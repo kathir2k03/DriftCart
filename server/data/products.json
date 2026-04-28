@@ -1,0 +1,111 @@
+[
+  {
+    "name": "Samsung Galaxy S23",
+    "price": 74999,
+    "description": "High-end Android smartphone with powerful performance",
+    "ratings": 4.6,
+    "images": [
+      { "image": "https://example.com/samsung1.jpg" }
+    ],
+    "category": "Mobile Phones",
+    "seller": "Samsung Store",
+    "stock": 20,
+    "numOfReviews": 2,
+    "reviews": [
+      {
+        "name": "Rahul",
+        "rating": 5,
+        "comment": "Amazing camera quality"
+      },
+      {
+        "name": "Vijay",
+        "rating": 4,
+        "comment": "Smooth performance"
+      }
+    ],
+    "createdAt": "2026-04-28T10:00:00.000Z"
+  },
+  {
+    "name": "HP Pavilion Laptop",
+    "price": 55999,
+    "description": "Reliable laptop for everyday work and study",
+    "ratings": 4.2,
+    "images": [
+      { "image": "https://example.com/hp1.jpg" }
+    ],
+    "category": "Laptops",
+    "seller": "HP World",
+    "stock": 12,
+    "numOfReviews": 1,
+    "reviews": [
+      {
+        "name": "Kumar",
+        "rating": 4,
+        "comment": "Good for office work"
+      }
+    ],
+    "createdAt": "2026-04-28T10:05:00.000Z"
+  },
+  {
+    "name": "Nike Running Shoes",
+    "price": 3999,
+    "description": "Comfortable running shoes for daily workouts",
+    "ratings": 4.4,
+    "images": [
+      { "image": "https://example.com/shoes1.jpg" }
+    ],
+    "category": "Clothes/Shoes",
+    "seller": "Nike Store",
+    "stock": 30,
+    "numOfReviews": 2,
+    "reviews": [
+      {
+        "name": "Arun",
+        "rating": 5,
+        "comment": "Very comfortable"
+      },
+      {
+        "name": "Siva",
+        "rating": 4,
+        "comment": "Worth the price"
+      }
+    ],
+    "createdAt": "2026-04-28T10:10:00.000Z"
+  },
+  {
+    "name": "Boat Bluetooth Speaker",
+    "price": 1999,
+    "description": "Portable speaker with deep bass",
+    "ratings": 4.1,
+    "images": [
+      { "image": "https://example.com/speaker1.jpg" }
+    ],
+    "category": "Electronics",
+    "seller": "Boat Official",
+    "stock": 50,
+    "numOfReviews": 1,
+    "reviews": [
+      {
+        "name": "Manoj",
+        "rating": 4,
+        "comment": "Good sound quality"
+      }
+    ],
+    "createdAt": "2026-04-28T10:15:00.000Z"
+  },
+  {
+    "name": "Puma T-Shirt",
+    "price": 999,
+    "description": "Casual wear cotton T-shirt",
+    "ratings": 4.0,
+    "images": [
+      { "image": "https://example.com/tshirt1.jpg" }
+    ],
+    "category": "Clothes/Shoes",
+    "seller": "Puma Store",
+    "stock": 40,
+    "numOfReviews": 0,
+    "reviews": [],
+    "createdAt": "2026-04-28T10:20:00.000Z"
+  }
+]
