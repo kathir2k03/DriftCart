@@ -16,6 +16,8 @@ npm install express
 npm install mongoose
 npm install dotenv
 npm install nodemon --save-dev
+npm install validator 
+npm install bcrypt
 
 Notes:
 - --save-dev → development only
@@ -174,3 +176,13 @@ Use:
 - Test API using Postman
 
 __________________________________________________________________________________________________
+
+create products CRUD and filter, pagination APIS
+_____________________________________________________________________________________________________
+
+Create user API
+
+for email validation npm install validator 
+for password hase use npm install bcrypt
+
+____________________________________________________________________________________________________
