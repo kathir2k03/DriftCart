@@ -1,16 +1,30 @@
-const Product = require('../models/productModel')
+const Product = require('../models/productModel');
+const { search, filterByCategory, filterByPrice, pagination } = require('../utils/apiFeatures');
 
-// Get Products - /api/v1/products
-exports.getProducts = async (req, res, next) =>{
-    const products = await Product.find()
-    res.status(200).json(
-        {
-            success : true,
-            count : products.length,
+exports.getProducts = async (req, res, next) => {
+    try {
+        let query = Product.find();
+
+        query = search(query, req.query);
+        query = filterByCategory(query, req.query);
+        query = filterByPrice(query, req.query)
+        query = pagination(query, req.query);
+
+        const products = await query;
+        console.log(products)
+        res.status(200).json({
+            success: true,
+            count: products.length,
             products
-        }
-    )
-}
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
 
 // get single product - /api/v1/product/:id
 exports.getSingleProduct = async (req, res, next) => {
