@@ -62,7 +62,7 @@ exports.filterByPrice = (query, queryStr) => {
 
 exports.pagination =  (query, queryStr) => {
     const page = Number(queryStr.page) || 1;
-    const limit = Number(queryStr.limit) || 5;
+    const limit = Number(queryStr.limit) || 10;
 
     const skip = (page - 1) * limit;
 
