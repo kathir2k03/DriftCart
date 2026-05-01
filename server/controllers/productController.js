@@ -118,6 +118,9 @@ exports.deleteProduct = async (req, res, next) => {
 
 // create product - /api/v1/products/new
 exports.newProduct = async (req, res, next) =>{
+
+    req.body.user = req.user.id // getting from authToken function
+
  const product =  await Product.create(req.body)
    console.log("result",res)
    res.status(201).json({

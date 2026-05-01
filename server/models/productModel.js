@@ -75,6 +75,9 @@ const productSchema = new mongoose.Schema({
                 }
             }
         ],
+        user : {
+            type : mongoose.Schema.Types.ObjectId // adding user with userID
+        },
         createdAt : {
             type : Date,
             default : Date.now()
