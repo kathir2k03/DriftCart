@@ -185,4 +185,66 @@ Create user API
 for email validation npm install validator 
 for password hase use npm install bcrypt
 
+<<<<<<< Updated upstream
 ____________________________________________________________________________________________________
+=======
+____________________________________________________________________________________________________
+
+JWT token
+
+random key generator for jwt, https://randomkeygen.com/
+
+npm install jsonwebtoken
+
+usnig that jwt token to allow the user to view api paths 
+
+through cookies we are storing the token 
+
+then protect api paths using authorized valid token through middleware authenticate.js file
+
+before auth only move to api functions
+
+to read request cookies we need cookie packages for that npm install cookie-parser
+
+without cookie parsher middleware we cannot access req.cookie so implement in app.js file app.use(cookieParser())
+
+after function setuped validations done the path will work only token which user is have
+
+____________________________________________________________________________________________________________________________________
+
+after check valid user role to show particular api path for admin for user
+
+___________________________________________________________________________________________________________________________________
+
+after create logout api
+__________________________________________________________________________________________________________________________________
+
+adding created product userId for both post and get
+____________________________________________________________________________________________________________________________________
+
+Reset Password Auth works
+
+reset password token genertor for to verify we need crypto package file so npm install crypto
+_______________________________________________________________________________________________________________________________
+
+reset password url sharing through mail for to mail we are setuping template mail for that use mailtrap for that we need to install package
+
+npm install nodemailer after that set some email address, and details in the config.env
+
+
+  http://localhost:8000/api/v1/password/reset/d0d5f9f5137ba1fa97bb54f2975b8e9bac5237ea 
+
+ If you have not requested this email, then ignore it. this will work like this
+
+ ____________________________________________________________________________________________________________________________________________
+
+d0d5f9f5137ba1fa97bb54f2975b8e9bac5237ea using this token pass in reset password api and validate the new-password and re-Enter password
+
+______________________________________________________________________________________________________________________________________________
+
+get user Profile API
+Change Password API
+Update Profile API
+
+Admin routes
+>>>>>>> Stashed changes
