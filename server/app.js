@@ -3,7 +3,13 @@ const app = express()
 
 require('dotenv').config();
 
+<<<<<<< Updated upstream
 app.use(express.json())
+=======
+app.use(express.json()) 
+app.use(cookieParser()) // cookie parsher working in middleware
+
+>>>>>>> Stashed changes
 const products = require('./routes/product')
 const auth = require('./routes/auth')
 
