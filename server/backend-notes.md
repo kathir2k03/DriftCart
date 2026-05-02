@@ -242,3 +242,14 @@ npm install nodemailer after that set some email address, and details in the con
 d0d5f9f5137ba1fa97bb54f2975b8e9bac5237ea using this token pass in reset password api and validate the new-password and re-Enter password
 
 ______________________________________________________________________________________________________________________________________________
+
+get user Profile API
+Change Password API
+Update Profile API
+
+__________________________________________________________________________________________________________________________________________________
+
+Order apis services
+
+
+
