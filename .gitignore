@@ -8,6 +8,7 @@ server/node_modules/
 .env.*
 client/.env
 server/.env
+config/config.env
 
 # Logs
 logs/
