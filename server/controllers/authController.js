@@ -137,6 +137,7 @@ exports.resetPassword = async (req, res, next) =>{
             $gt : Date.now()  //checking that expire token is grater that current date to db expire date
         }
     })
+    
 
     if(!user){
         return next(res.status(401).json({
@@ -151,7 +152,7 @@ exports.resetPassword = async (req, res, next) =>{
             message :  "Password does not matched"
         }))        
     }
-
+  
     user.password = req.body.password
 
     //after validation undefined the keys in db
@@ -262,6 +263,12 @@ exports.forgotPassword = async (req, res, next) =>{
 //reset password api - /api/v1/reset/:token
 
 exports.resetPassword = async (req, res, next) =>{
+    if (!req.body.password || !req.body.confirmPassword) {
+  return res.status(400).json({
+    success: false,
+    message: "Password and Confirm Password are required"
+  })
+}
     const resetPasswordToken = crypto.createHash('sha256').update(req.params.token).digest('hex')
 
     const user = await User.findOne({

@@ -11,7 +11,7 @@ exports.getProducts = async (req, res, next) => {
         query = pagination(query, req.query);
 
         const products = await query;
-        console.log(products)
+
         res.status(200).json({
             success: true,
             count: products.length,
@@ -122,7 +122,7 @@ exports.newProduct = async (req, res, next) =>{
     req.body.user = req.user.id // getting from authToken function
 
  const product =  await Product.create(req.body)
-   console.log("result",res)
+
    res.status(201).json({
     success: true,
     product 
