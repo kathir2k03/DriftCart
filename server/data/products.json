@@ -5,7 +5,7 @@
     "description": "High-end Android smartphone with powerful performance",
     "ratings": 4.6,
     "images": [
-      { "image": "https://example.com/samsung1.jpg" }
+      { "image": "https://dummyimage.com/600x400/000/fff&text=Samsung+Galaxy+S23" }
     ],
     "category": "Mobile Phones",
     "seller": "Samsung Store",
@@ -31,7 +31,7 @@
     "description": "Reliable laptop for everyday work and study",
     "ratings": 4.2,
     "images": [
-      { "image": "https://example.com/hp1.jpg" }
+      { "image": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=300" }
     ],
     "category": "Laptops",
     "seller": "HP World",
@@ -52,7 +52,7 @@
     "description": "Comfortable running shoes for daily workouts",
     "ratings": 4.4,
     "images": [
-      { "image": "https://example.com/shoes1.jpg" }
+      { "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" }
     ],
     "category": "Clothes/Shoes",
     "seller": "Nike Store",
@@ -78,7 +78,7 @@
     "description": "Portable speaker with deep bass",
     "ratings": 4.1,
     "images": [
-      { "image": "https://example.com/speaker1.jpg" }
+      { "image": "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=300" }
     ],
     "category": "Electronics",
     "seller": "Boat Official",
@@ -99,7 +99,7 @@
     "description": "Casual wear cotton T-shirt",
     "ratings": 4.0,
     "images": [
-      { "image": "https://example.com/tshirt1.jpg" }
+      { "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300" }
     ],
     "category": "Clothes/Shoes",
     "seller": "Puma Store",
