@@ -10,4 +10,4 @@ app.listen(process.env.PORT,() =>{
     console.log(`Server is istening to the port : ${process.env.PORT}`)
 })
 
-// to run the server => nodemon server || npm start
+// to run the server => nodemon server || npm start || npm run seed
