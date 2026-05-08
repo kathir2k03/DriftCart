@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { getProduct } from "../../actions/productAction"
 import { toast } from 'react-toastify'
 import Loader from "../layouts/Loader"
+import { Carousel } from 'react-bootstrap'
 
 const ProductDetail = () => {
     const { id } = useParams()
@@ -23,7 +24,21 @@ const ProductDetail = () => {
 
                     <div className="row f-flex justify-content-around">
                         <div className="col-12 col-lg-5 img-fluid" id="product_image">
-                            <img src={product?.images[0].image} height="500" width="500" />
+                            <Carousel pause="hover">
+                                {product?.images &&
+                                    product?.images.map((data) => (
+                                        <Carousel.Item key={data?._id}>
+                                            <img
+                                                src={data?.image}
+                                                alt={product?.name}
+                                                height="500"
+                                                width="500"
+                                                className="d-block w-100"
+                                            />
+                                        </Carousel.Item>
+                                    ))}
+                            </Carousel>
+
                         </div>
 
                         <div className="col-12 col-lg-5 mt-5">
@@ -33,7 +48,7 @@ const ProductDetail = () => {
                             <hr />
 
                             <div className="rating-outer">
-                                <div className="rating-inner" style={{width : `${product?.ratings/5 *100}%`}}></div>
+                                <div className="rating-inner" style={{ width: `${product?.ratings / 5 * 100}%` }}></div>
                             </div>
                             <span id="no_of_reviews">{product?.numOfReviews}</span>
 
@@ -51,7 +66,7 @@ const ProductDetail = () => {
 
                             <hr />
 
-                            <p>Status: <span id="stock_status">{product?.numOfReviews > 0 ? "In Stock" : "Out of Stock"} </span></p>
+                            <p>Status: <span className={product?.numOfReviews > 0 ? 'greenColor' : 'redColor'} id="stock_status">{product?.numOfReviews > 0 ? "In Stock" : "Out of Stock"} </span></p>
 
                             <hr />
 
