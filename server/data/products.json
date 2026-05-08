@@ -5,7 +5,9 @@
     "description": "High-end Android smartphone with powerful performance",
     "ratings": 4.6,
     "images": [
-      { "image": "https://dummyimage.com/600x400/000/fff&text=Samsung+Galaxy+S23" }
+      { "image": "https://dummyimage.com/600x400/000/fff&text=Samsung+Galaxy+S23" },
+      { "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400" },
+      { "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400" }
     ],
     "category": "Mobile Phones",
     "seller": "Samsung Store",
@@ -31,7 +33,9 @@
     "description": "Reliable laptop for everyday work and study",
     "ratings": 4.2,
     "images": [
-      { "image": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=300" }
+      { "image": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=300" },
+      { "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400" },
+      { "image": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400" }
     ],
     "category": "Laptops",
     "seller": "HP World",
@@ -52,7 +56,9 @@
     "description": "Comfortable running shoes for daily workouts",
     "ratings": 4.4,
     "images": [
-      { "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" }
+      { "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" },
+      { "image": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400" },
+      { "image": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400" }
     ],
     "category": "Clothes/Shoes",
     "seller": "Nike Store",
@@ -78,7 +84,9 @@
     "description": "Portable speaker with deep bass",
     "ratings": 4.1,
     "images": [
-      { "image": "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=300" }
+      { "image": "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=300" },
+      { "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400" },
+      { "image": "https://images.unsplash.com/photo-1589003077984-894e133ddfab?w=400" }
     ],
     "category": "Electronics",
     "seller": "Boat Official",
@@ -99,7 +107,9 @@
     "description": "Casual wear cotton T-shirt",
     "ratings": 4.0,
     "images": [
-      { "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300" }
+      { "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300" },
+      { "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400" },
+      { "image": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400" }
     ],
     "category": "Clothes/Shoes",
     "seller": "Puma Store",
