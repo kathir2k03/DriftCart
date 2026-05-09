@@ -4,17 +4,17 @@ const { search, filterByCategory, filterByPrice, pagination } = require('../util
 exports.getProducts = async (req, res, next) => {
     try {
         let query = Product.find();
-
+        
         query = search(query, req.query);
         query = filterByCategory(query, req.query);
         query = filterByPrice(query, req.query)
         query = pagination(query, req.query);
 
         const products = await query;
-
+        const totalProductsCount = await Product.countDocuments({}) // finding the total doucment/objects of the collection
         res.status(200).json({
             success: true,
-            count: products.length,
+            count: totalProductsCount,
             products
         });
 

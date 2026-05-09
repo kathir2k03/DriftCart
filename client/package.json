@@ -12,6 +12,8 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
     "axios": "^1.16.0",
+    "pagination": "^0.4.6",
+    "rc-pagination": "^5.1.0",
     "react": "^19.2.5",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.5",

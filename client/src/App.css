@@ -614,3 +614,76 @@ ul.CTAs a {
   font-size: 0.8rem;
   color: grey;
 }
+
+.pagination-div{
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.pagination li {
+  min-width: 38px;
+  height: 38px;
+  border: 1px solid #d5d9d9;
+  background-color: #fff;
+  color: #0f1111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.pagination li:hover {
+  background-color: #f7fafa;
+  border-color: #c8caca;
+}
+
+.pagination li a {
+  text-decoration: none;
+  color: #0f1111;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination .rc-pagination-item-active {
+  background-color: #ffd814;
+  border-color: #fcd200;
+  font-weight: 600;
+}
+
+.pagination .rc-pagination-item-active a {
+  color: #0f1111;
+}
+
+.pagination .rc-pagination-prev,
+.pagination .rc-pagination-next {
+  padding: 0 14px;
+  font-weight: 500;
+}
+
+.pagination .rc-pagination-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f3f3f3;
+}
+
+.pagination .rc-pagination-prev,
+.pagination .rc-pagination-next {
+  min-width: 70px;
+  padding: 0 12px;
+}
