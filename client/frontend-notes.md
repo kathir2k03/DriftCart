@@ -7,6 +7,7 @@ install packages
 5. npm install redux-thunk // api action delay
 6. npm install redux-devtools-extension
 7. npm install --save react-toastify
+8. npm install rc-pagination 
 
  npm install axios react-helmet-async redux react-redux redux-thunk redux-devtools redux-devtools-extension
 
@@ -41,9 +42,10 @@ create loader and implement functionality
 for error set trostify install  trostify and import in App.jsx {}
 
 next create product detail using params useNavigate
-
-
-
 ___________________________________________________________________________________________________________________
+
+Next pagination
+
+npm install rc-pagination 
 
 

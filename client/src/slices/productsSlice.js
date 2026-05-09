@@ -14,7 +14,8 @@ const productsSlice = createSlice({
         productsSuccess(state, action){
             return{
                 loading : false,
-                products : action.payload.products
+                products : action.payload.products,
+                productsCount : action.payload.count
             }
         },
         productsFail(state, action){

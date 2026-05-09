@@ -5,6 +5,7 @@ import { getProduct } from "../../actions/productAction"
 import { toast } from 'react-toastify'
 import Loader from "../layouts/Loader"
 import { Carousel } from 'react-bootstrap'
+import MetaData from "../layouts/MetaData"
 
 const ProductDetail = () => {
     const { id } = useParams()
@@ -21,7 +22,7 @@ const ProductDetail = () => {
 
             {loading ? <Loader /> :
                 <Fragment>
-
+<MetaData title={"Product Detail"} />
                     <div className="row f-flex justify-content-around">
                         <div className="col-12 col-lg-5 img-fluid" id="product_image">
                             <Carousel pause="hover">
