@@ -2,33 +2,66 @@ import './App.css'
 import Home from './components/Home'
 import Footer from './components/layouts/Footer'
 import Header from './components/layouts/Header'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ErrorPage from './components/layouts/ErrorPage'
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet
+} from 'react-router-dom'
+
 import { HelmetProvider } from 'react-helmet-async'
-import { ToastContainer} from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import ProductDetail from './components/product/ProductDetail'
+import ProductSearch from './components/product/ProductSearch'
+
+
+function Layout() {
+  return (
+    <>
+      <Header />
+
+      <div className="container container-fluid">
+        <ToastContainer theme='dark' />
+
+        <Outlet />
+      </div>
+
+      <Footer />
+    </>
+  )
+}
 
 function App() {
 
   const route = createBrowserRouter([
-  { path: '/', element:       <>
-        
-        <Home />
-       
-      </>},
-  { path: '/product-detail/:id', element: <ProductDetail/> },
-  // { path: '*', element: <Footer/> }
-])
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        {
+          path: '/',
+          element: <Home />
+        },
+        {
+          path: '/product-detail/:id',
+          element: <ProductDetail />
+        },
+        {
+          path : '/search/:keyword',
+          element : <ProductSearch/>
+        },
+        {
+          path : '*',
+          element : <ErrorPage/>
+        }
+      ]
+    }
+  ])
 
   return (
     <div className='App'>
       <HelmetProvider>
-        <Header />
-        <div className="container container-fluid">
-          
-        <ToastContainer theme='dark'/>
         <RouterProvider router={route} />
-         <Footer />
-        </div>
       </HelmetProvider>
     </div>
   )

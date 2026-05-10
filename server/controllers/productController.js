@@ -3,26 +3,35 @@ const { search, filterByCategory, filterByPrice, pagination } = require('../util
 
 exports.getProducts = async (req, res, next) => {
     try {
+
         let query = Product.find();
-        
+
         query = search(query, req.query);
         query = filterByCategory(query, req.query);
-        query = filterByPrice(query, req.query)
+        query = filterByPrice(query, req.query);
+
+        // clone query before pagination
+        const filteredProductsCount = await query.clone().countDocuments();
+
+        // pagination
         query = pagination(query, req.query);
 
+        // final products
         const products = await query;
-        const totalProductsCount = await Product.countDocuments({}) // finding the total doucment/objects of the collection
+
         res.status(200).json({
             success: true,
-            count: totalProductsCount,
+            count: filteredProductsCount,
             products
         });
 
     } catch (error) {
+
         res.status(500).json({
             success: false,
-            message : "Unable to send Products"
+            message: "Unable to send Products"
         });
+
     }
 };
 
