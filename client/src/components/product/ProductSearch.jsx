@@ -1,14 +1,16 @@
 import React, { Fragment, useEffect, useState } from "react";
-import MetaData from "./layouts/MetaData";
+import MetaData from "../layouts/MetaData";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../actions/productsActions";
-import Loader from "./layouts/Loader";
-import Product from "./product/Product";
+import { getProducts } from "../../actions/productsActions";
+import Loader from "../layouts/Loader";
+import Product from "./Product";
 import { toast } from "react-toastify";
 import Pagination from "rc-pagination";
+import { useParams } from "react-router-dom";
 
-function Home() {
+function ProductSearch() {
   const dispatch = useDispatch();
+  const { keyword } = useParams()
   const { products, loading, error, productsCount } = useSelector(
     (state) => state.productsState,
   );
@@ -25,8 +27,8 @@ function Home() {
       });
     }
 
-    dispatch(getProducts(null, currentPage));
-  }, [dispatch, error, currentPage]);
+    dispatch(getProducts(keyword, currentPage));
+  }, [dispatch, error, currentPage, keyword]);
 
   return (
     <Fragment>
@@ -35,7 +37,7 @@ function Home() {
       ) : (
         <Fragment>
           <MetaData title={"Buy Best Products"} />
-          <h1 id="products_heading">Latest Products</h1>
+          <h1 id="products_heading">Search Products</h1>
 
           <section id="products" className="container mt-5">
             <div className="row">
@@ -64,4 +66,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default ProductSearch;
