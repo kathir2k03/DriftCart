@@ -687,3 +687,31 @@ ul.CTAs a {
   min-width: 70px;
   padding: 0 12px;
 }
+
+.reset-btn{
+    border: 1px solid #d5d9d9;
+    background: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.reset-btn:hover{
+    background: #f7fafa;
+}
+
+.filter-item:hover {
+  background-color: #fff7e6;
+  color: #ff9900;
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.filter-item.active {
+  background-color: #fff7e6;
+  color: #ff9900;
+  font-weight: bold;
+  border: 1px solid #ff9900;
+}

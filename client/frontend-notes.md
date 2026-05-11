@@ -8,6 +8,8 @@ install packages
 6. npm install redux-devtools-extension
 7. npm install --save react-toastify
 8. npm install rc-pagination 
+9. npm install rc-slider
+10. npm install rc-tooltip
 
  npm install axios react-helmet-async redux react-redux redux-thunk redux-devtools redux-devtools-extension
 
@@ -52,3 +54,11 @@ ________________________________________________________________________________
 
 Product Search 
 search product validations, logics
+
+Filter API Implementation
+rc-slider npm install rc-slider npm install rc-tooltip
+
+category Filter
+
+Filter By Raitngs
+_______________________________________________________________________________________________________________

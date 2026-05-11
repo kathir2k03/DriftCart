@@ -60,6 +60,23 @@ exports.filterByPrice = (query, queryStr) => {
     return query.find(filter);
 };
 
+exports.filterByRatings = (query, queryStr) => {
+
+    if(queryStr.ratings){
+
+        const rating = Number(queryStr.ratings)
+
+        query = query.find({
+            ratings: {
+                $gte: rating,
+                $lt: rating + 1
+            }
+        })
+    }
+
+    return query;
+}
+
 exports.pagination =  (query, queryStr) => {
     const page = Number(queryStr.page) || 1;
     const limit = Number(queryStr.limit) || 2;
