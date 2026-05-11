@@ -1,5 +1,5 @@
 const Product = require('../models/productModel');
-const { search, filterByCategory, filterByPrice, pagination } = require('../utils/apiFeatures');
+const { search, filterByCategory, filterByPrice, filterByRatings, pagination } = require('../utils/apiFeatures');
 
 exports.getProducts = async (req, res, next) => {
     try {
@@ -9,6 +9,7 @@ exports.getProducts = async (req, res, next) => {
         query = search(query, req.query);
         query = filterByCategory(query, req.query);
         query = filterByPrice(query, req.query);
+        query = filterByRatings(query, req.query)
 
         // clone query before pagination
         const filteredProductsCount = await query.clone().countDocuments();

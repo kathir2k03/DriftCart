@@ -25,7 +25,7 @@ function Home() {
       });
     }
 
-    dispatch(getProducts(null, currentPage));
+    dispatch(getProducts(null, null, null, null, currentPage));
   }, [dispatch, error, currentPage]);
 
   return (
@@ -41,7 +41,7 @@ function Home() {
             <div className="row">
               {products && products.length > 0 ?
                 products.map((product) => (
-                  <Product key={product._id} product={product} />
+                  <Product col={3} key={product._id} product={product} />
                 )) : <h3>No Data Available</h3>}
             </div>
           </section>
