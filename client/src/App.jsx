@@ -13,6 +13,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import { ToastContainer } from 'react-toastify'
 import ProductDetail from './components/product/ProductDetail'
 import ProductSearch from './components/product/ProductSearch'
+import Login from './components/user/Login'
 
 
 function Layout() {
@@ -42,6 +43,10 @@ function App() {
           path: '/',
           element: <Home />
         },
+        {
+          path: '/login',
+          element: <Login />
+        },        
         {
           path: '/product-detail/:id',
           element: <ProductDetail />
