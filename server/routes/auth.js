@@ -14,7 +14,7 @@ router.route('/password/change').put(isAuthenticatedUser, changePassword)
 
 // My Profile
 router.route('/myprofile').get(isAuthenticatedUser,getUserProfile)
-router.route('/myprofile/update').put(isAuthenticatedUser, updateProfile)
+router.route('/myprofile/update').put(isAuthenticatedUser, upload.single('avatar'), updateProfile)
 
 
 //admin Routes
