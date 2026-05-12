@@ -15,7 +15,12 @@ import ProductDetail from './components/product/ProductDetail'
 import ProductSearch from './components/product/ProductSearch'
 import Login from './components/user/Login'
 import Register from './components/user/Register'
-
+import { useEffect } from 'react'
+import store from './store'
+import { loadUser } from './actions/userActions'
+import Profile from './components/user/Profile'
+import ProtectedRoute from './components/route/ProtectedRoute'
+import UpdateProfile from './components/user/UpdateProfile'
 
 function Layout() {
   return (
@@ -35,6 +40,10 @@ function Layout() {
 
 function App() {
 
+  useEffect(() => {
+    store.dispatch(loadUser())
+  }, [])
+
   const route = createBrowserRouter([
     {
       path: '/',
@@ -51,7 +60,15 @@ function App() {
         {
           path : '/register',
           element : <Register />
-        },     
+        },  
+        {
+          path : '/myprofile',
+          element : <ProtectedRoute><Profile/></ProtectedRoute> 
+        },  
+        {
+          path : '/myprofile/update',
+          element : <ProtectedRoute><UpdateProfile/></ProtectedRoute>
+        },
         {
           path: '/product-detail/:id',
           element: <ProductDetail />

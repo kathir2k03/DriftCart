@@ -74,3 +74,13 @@ Resister Component
 for this register to read avathar we added multiple form datas so for backend need to install npm install multer
 _________________________________________________________________________________________________________________
 
+Load Logged User data
+Show user details, header style and display user name
+Logout user
+Show User Profile
+____________________________________________________________________________________________________________________
+
+Protected Route create protected rout with childern and call in the route path of the component
+
+Update Profile Reducers & Action
+
