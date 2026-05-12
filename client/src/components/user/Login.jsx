@@ -3,7 +3,7 @@ import MetaData from "../layouts/MetaData";
 import { login } from "../../actions/userActions"
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 function Login() {
 
@@ -33,7 +33,7 @@ function Login() {
             <MetaData title={"Login"} />
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
-                    <form className="shadow-lg" onSubmit={submitHandler}>
+                    <form className="shadow-lg pb-5" onSubmit={submitHandler}>
                         <h1 className="mb-3">Login</h1>
                         <div className="form-group">
                             <label htmlFor="email_field">Email</label>
@@ -65,9 +65,9 @@ function Login() {
                             LOGIN
                         </button>
 
-                        <a href="#" className="float-right mt-3">
+                        <Link to="/register" className="float-right mt-3">
                             New User?
-                        </a>
+                        </Link>
                     </form>
                 </div>
             </div>

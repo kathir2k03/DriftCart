@@ -67,3 +67,10 @@ Auth Slice
 Auth Action
 Creating Login Component
 
+__________________________________________________________________________________________________________________
+
+Register Reducer & Action
+Resister Component
+for this register to read avathar we added multiple form datas so for backend need to install npm install multer
+_________________________________________________________________________________________________________________
+
