@@ -62,3 +62,8 @@ category Filter
 
 Filter By Raitngs
 _______________________________________________________________________________________________________________
+
+Auth Slice
+Auth Action
+Creating Login Component
+

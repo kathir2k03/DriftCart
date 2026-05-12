@@ -1,11 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import productsReducer from "./slices/productsSlice";
 import productReducer from "./slices/productSlice";
-
+import authReducer from "./slices/authSlice";
 
 const reducer = combineReducers({ // using combine reducer to sotre all reducer as reducer
     productsState : productsReducer,
-    productState : productReducer            
+    productState : productReducer,
+    authState : authReducer            
 });
 
 const store = configureStore({
