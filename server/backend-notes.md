@@ -22,6 +22,7 @@ npm install jsonwebtoken
 install cookie-parser
 npm install crypto
 npm install nodemailer
+npm install multer
 
 Notes:
 - --save-dev → development only

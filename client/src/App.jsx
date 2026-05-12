@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify'
 import ProductDetail from './components/product/ProductDetail'
 import ProductSearch from './components/product/ProductSearch'
 import Login from './components/user/Login'
+import Register from './components/user/Register'
 
 
 function Layout() {
@@ -46,7 +47,11 @@ function App() {
         {
           path: '/login',
           element: <Login />
-        },        
+        },   
+        {
+          path : '/register',
+          element : <Register />
+        },     
         {
           path: '/product-detail/:id',
           element: <ProductDetail />
