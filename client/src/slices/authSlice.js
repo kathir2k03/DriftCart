@@ -103,13 +103,85 @@ const authSlice = createSlice({
                 loading: false,
                 error: action.payload
             }
-        },        
+        },   
+        // Update Password request
+        updatePasswordRequest(state, action) {
+            return {
+                ...state,
+                loading: true,
+                isUpdated : false
+            }
+        },
+        updatePasswordSuccess(state, action) {
+            return {
+                ...state,
+                loading: false,
+                isAuthenticated: true,
+                isUpdated: true
+            }
+        },
+        updatePasswordFail(state, action) {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        },    
+        // Forgot password request
+        forgotPasswordRequest(state, action) {
+            return {
+                ...state,
+                loading: true,
+            }
+        },
+        forgotPasswordSuccess(state, action) {
+            return {
+                ...state,
+                loading: false,
+                message: action.payload.message
+            }
+        },
+        forgotPasswordFail(state, action) {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        },
+        // Reset Password
+        resetPasswordRequest(state, action) {
+            return {
+                ...state,
+                loading: true,
+            }
+        },
+        resetPasswordSuccess(state, action) {
+            return {
+                ...state,
+                loading: false,
+                isAuthenticated: true,
+                user : action.payload.user
+            }
+        },
+        resetPasswordFail(state, action) {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        },
+        clearAuthError(state, action) {
+    return {
+        ...state,
+        error: null
+    }
+}                         
     }
 })
 
 //action creater
 const { actions, reducer } = authSlice
 
-export const { loginRequest, loginSuccess, loginFail, registerRequest, registerSuccess, registerFail, loadUserRequest, loadUserSuccess, loadUserFail, logoutSuccess, logoutFail, updateProfileRequest, updateProfileSuccess, updateProfileFail } = actions
+export const { loginRequest, loginSuccess, loginFail, registerRequest, registerSuccess, registerFail, loadUserRequest, loadUserSuccess, loadUserFail, logoutSuccess, logoutFail, updateProfileRequest, updateProfileSuccess, updateProfileFail, updatePasswordRequest, updatePasswordSuccess, updatePasswordFail, forgotPasswordRequest, forgotPasswordSuccess, forgotPasswordFail, resetPasswordRequest, resetPasswordSuccess, resetPasswordFail, clearAuthError } = actions
 
 export default reducer
