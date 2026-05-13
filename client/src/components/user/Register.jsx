@@ -60,7 +60,7 @@ function Register(){
          toast.error(error)
         }
         
-    },[error, isAuthenticated, navigate])
+    },[error, isAuthenticated, dispatch, navigate])
 
     return(
         <Fragment>
@@ -108,7 +108,7 @@ function Register(){
                           <img
                               src={avatarPreview}
                               className='rounded-circle'
-                              alt='image'
+                              alt='Avatar'
                           />
                       </figure>
                   </div>

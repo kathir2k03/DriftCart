@@ -26,7 +26,7 @@ function Login() {
         if (error) {
             toast.error(error);
         }
-    }, [error, isAuthenticated]);
+    }, [error, isAuthenticated, navigate]);
 
     return (
         <Fragment>
