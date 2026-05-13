@@ -50,7 +50,7 @@ const ForgotPassword = () => {
                         <button
                             id="forgot_password_button"
                             type="submit"
-                            className="btn btn-block py-3">
+                            className="btn btn-block py-3" disabled={loading}>
                             Send Email
                     </button>
 

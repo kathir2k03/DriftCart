@@ -99,7 +99,7 @@ export const resetPassword = (formData, token) => async(dispatch) => {
                 'Content-Type' : 'application/json'
             }
         }
-        const { data } = await axios.put(`/api/v1/password/reset/${token}`,formData,config)
+        const { data } = await axios.post(`/api/v1/password/reset/${token}`,formData,config)
         dispatch(resetPasswordSuccess(data))
     } catch (error) {
         dispatch(resetPasswordFail(error?.response?.data?.message || error.message))
