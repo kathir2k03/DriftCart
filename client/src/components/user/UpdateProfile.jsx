@@ -3,12 +3,12 @@ import MetaData from "../layouts/MetaData"
 import { useDispatch, useSelector } from "react-redux"
 import { updateProfile } from "../../actions/userActions"
 import { toast } from "react-toastify"
-import { clearAuthError } from "../../slices/authSlice"
+import { clearAuthError, clearUpdateProfile } from "../../slices/authSlice"
 
 
 const UpdateProfile = () => {
 
-    const {loading, error, user, isUpdated} = useSelector(state => state.authState)
+    const {error, user, isUpdated} = useSelector(state => state.authState)
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [avatar, setAvatar] = useState("")
@@ -52,7 +52,9 @@ const UpdateProfile = () => {
             }  
         }
         if(isUpdated){
-            toast.success('Profile Updated Successfully')
+            toast.success('Profile Updated Successfully',{
+            onOpen : () => dispatch(clearUpdateProfile())
+            })
         }
         if (error) {
          toast.error(error)

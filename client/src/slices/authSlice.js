@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        loading: false,
+        loading: true,
         isAuthenticated: false
     },
     reducers: {
@@ -64,8 +64,7 @@ const authSlice = createSlice({
         loadUserFail(state, action) {
             return {
                 ...state,
-                loading: false,
-                error: action.payload
+                loading: false
             }
         },
         logoutSuccess(state, action) {
@@ -104,6 +103,13 @@ const authSlice = createSlice({
                 error: action.payload
             }
         },   
+        clearUpdateProfile(state, action) {
+            return{
+                ...state,
+                isUpdated : false
+            }
+        },
+
         // Update Password request
         updatePasswordRequest(state, action) {
             return {
@@ -182,6 +188,6 @@ const authSlice = createSlice({
 //action creater
 const { actions, reducer } = authSlice
 
-export const { loginRequest, loginSuccess, loginFail, registerRequest, registerSuccess, registerFail, loadUserRequest, loadUserSuccess, loadUserFail, logoutSuccess, logoutFail, updateProfileRequest, updateProfileSuccess, updateProfileFail, updatePasswordRequest, updatePasswordSuccess, updatePasswordFail, forgotPasswordRequest, forgotPasswordSuccess, forgotPasswordFail, resetPasswordRequest, resetPasswordSuccess, resetPasswordFail, clearAuthError } = actions
+export const { loginRequest, loginSuccess, loginFail, registerRequest, registerSuccess, registerFail, loadUserRequest, loadUserSuccess, loadUserFail, logoutSuccess, logoutFail, updateProfileRequest, updateProfileSuccess, updateProfileFail, updatePasswordRequest, updatePasswordSuccess, updatePasswordFail, clearUpdateProfile, forgotPasswordRequest, forgotPasswordSuccess, forgotPasswordFail, resetPasswordRequest, resetPasswordSuccess, resetPasswordFail, clearAuthError } = actions
 
 export default reducer

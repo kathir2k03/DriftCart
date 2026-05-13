@@ -34,7 +34,7 @@ const NewPassword = () => {
             toast.error(error)
             dispatch(clearAuthError())
         }
-    },[isAuthenticated, error, dispatch, ])
+    },[isAuthenticated, error, dispatch, navigate])
 
     return (
         <Fragment>
