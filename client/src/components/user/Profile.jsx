@@ -32,7 +32,7 @@ const Profile = () => {
                     My Orders
                 </Link>
 
-                <Link to="#" className="btn btn-primary btn-block mt-3">
+                <Link to="/myprofile/resetpassword" className="btn btn-primary btn-block mt-3">
                     Change Password
                 </Link>
             </div>

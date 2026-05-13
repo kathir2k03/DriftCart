@@ -3,6 +3,7 @@ import MetaData from "../layouts/MetaData"
 import { useDispatch, useSelector } from "react-redux"
 import { updateProfile } from "../../actions/userActions"
 import { toast } from "react-toastify"
+import { clearAuthError } from "../../slices/authSlice"
 
 
 const UpdateProfile = () => {
@@ -55,6 +56,7 @@ const UpdateProfile = () => {
         }
         if (error) {
          toast.error(error)
+         dispatch(clearAuthError())
         }        
     }, [user, isUpdated, error, dispatch])
     return(

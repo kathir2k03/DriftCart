@@ -21,6 +21,8 @@ import { loadUser } from './actions/userActions'
 import Profile from './components/user/Profile'
 import ProtectedRoute from './components/route/ProtectedRoute'
 import UpdateProfile from './components/user/UpdateProfile'
+import ChangePassword from './components/user/ChangePassword'
+import ForgotPassword from './components/user/ForgotPassword'
 
 function Layout() {
   return (
@@ -49,7 +51,7 @@ function App() {
       path: '/',
       element: <Layout />,
       children: [
-        {
+        { 
           path: '/',
           element: <Home />
         },
@@ -62,12 +64,20 @@ function App() {
           element : <Register />
         },  
         {
+          path : '/forgot-password',
+          element : <ForgotPassword/>
+        },
+        {
           path : '/myprofile',
           element : <ProtectedRoute><Profile/></ProtectedRoute> 
         },  
         {
           path : '/myprofile/update',
           element : <ProtectedRoute><UpdateProfile/></ProtectedRoute>
+        },
+        {
+          path : "/myprofile/resetpassword",
+          element : <ProtectedRoute><ChangePassword/></ProtectedRoute>
         },
         {
           path: '/product-detail/:id',

@@ -8,7 +8,7 @@ const upload = require('../middleware/multer')
 router.route('/register').post(upload.single('avatar'),registerUser)
 router.route('/login').post(loginUser)
 router.route('/logout').get(logoutUser)
-router.route('/password/forgot').get(forgotPassword)
+router.route('/password/forgot').post(forgotPassword)
 router.route('/password/reset/:token').post(resetPassword)
 router.route('/password/change').put(isAuthenticatedUser, changePassword)
 

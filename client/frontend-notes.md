@@ -84,3 +84,8 @@ Protected Route create protected rout with childern and call in the route path o
 
 Update Profile Reducers & Action
 
+_______________________________________________________________________________________________________________________
+
+Password Update
+Forgot & Reset Password 
+_________________________________________________________________________________________________________________________

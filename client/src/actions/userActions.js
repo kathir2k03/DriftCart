@@ -1,4 +1,4 @@
-import { loadUserFail, loadUserRequest, loadUserSuccess, loginFail, loginRequest, loginSuccess, logoutFail, logoutSuccess, registerFail, registerRequest, registerSuccess, updateProfileFail, updateProfileRequest, updateProfileSuccess } from "../slices/authSlice"
+import { forgotPasswordRequest, forgotPasswordSuccess, forgotPasswordFail, loadUserFail, loadUserRequest, loadUserSuccess, loginFail, loginRequest, loginSuccess, logoutFail, logoutSuccess, registerFail, registerRequest, registerSuccess, resetPasswordFail, resetPasswordRequest, resetPasswordSuccess, updatePasswordFail, updatePasswordRequest, updatePasswordSuccess, updateProfileFail, updateProfileRequest, updateProfileSuccess } from "../slices/authSlice"
 import axios from 'axios'
 
 export const login = (email, password) => async(dispatch) => {
@@ -58,5 +58,50 @@ export const updateProfile = (userData) => async(dispatch) => {
         dispatch(updateProfileSuccess(data))
     } catch (error) {
         dispatch(updateProfileFail(error?.response?.data?.message || error.message))
+    }
+}
+
+export const updatePassword = (formData) => async(dispatch) => {
+    try {
+        dispatch(updatePasswordRequest())
+        const config = {
+            headers : {
+                'Content-Type' : 'application/json'
+            }
+        }
+        const { data } = await axios.put(`/api/v1/password/change`,formData,config)
+        dispatch(updatePasswordSuccess(data))
+    } catch (error) {
+        dispatch(updatePasswordFail(error?.response?.data?.message || error.message))
+    }
+}
+
+export const forgotPassword = (formData) => async(dispatch) => {
+    try {
+        dispatch(forgotPasswordRequest())
+        const config = {
+            headers : {
+                'Content-Type' : 'application/json'
+            }
+        }
+        const { data } = await axios.post(`/api/v1/password/forgot`,formData,config)
+        dispatch(forgotPasswordSuccess(data))
+    } catch (error) {
+        dispatch(forgotPasswordFail(error?.response?.data?.message || error.message))
+    }
+}
+
+export const resetPassword = (formData, token) => async(dispatch) => {
+    try {
+        dispatch(resetPasswordRequest())
+        const config = {
+            headers : {
+                'Content-Type' : 'application/json'
+            }
+        }
+        const { data } = await axios.put(`/api/v1/password/reset/${token}`,formData,config)
+        dispatch(resetPasswordSuccess(data))
+    } catch (error) {
+        dispatch(resetPasswordFail(error?.response?.data?.message || error.message))
     }
 }
