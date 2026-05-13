@@ -102,7 +102,7 @@ exports.forgotPassword = async (req, res, next) => {
 
     // Create reset URL
 
-    const resetURL = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`
+    const resetURL = `${process.env.FRONTEND_URL}/forgot-password/${resetToken}`
     // protocol is http://127.0.0.1/api/v1/password/reset/{resetToken}
 
     const message = `Your Password reset URL is as follows \n\n

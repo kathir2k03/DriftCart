@@ -23,6 +23,7 @@ import ProtectedRoute from './components/route/ProtectedRoute'
 import UpdateProfile from './components/user/UpdateProfile'
 import ChangePassword from './components/user/ChangePassword'
 import ForgotPassword from './components/user/ForgotPassword'
+import NewPassword from './components/user/NewPassword'
 
 function Layout() {
   return (
@@ -66,6 +67,10 @@ function App() {
         {
           path : '/forgot-password',
           element : <ForgotPassword/>
+        },
+        {
+          path : '/forgot-password/:token',
+          element : <NewPassword/>
         },
         {
           path : '/myprofile',
