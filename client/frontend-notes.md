@@ -10,6 +10,7 @@ install packages
 8. npm install rc-pagination 
 9. npm install rc-slider
 10. npm install rc-tooltip
+11. npm install countries-list
 
  npm install axios react-helmet-async redux react-redux redux-thunk redux-devtools redux-devtools-extension
 
@@ -90,4 +91,17 @@ Password Update
 Forgot & Reset Password 
 _________________________________________________________________________________________________________________________
 
-handle-quantity-selection
+handle-quantity-selection 
+
+Add to cart Button and store in local storage
+cart component
+Remove Item cart
+Handle Cart Summary
+
+_____________________________________________________________________________________________________________________________
+
+Shipping Component
+
+npm install countries-list
+
+Checkout Steps

@@ -24,6 +24,8 @@ import UpdateProfile from './components/user/UpdateProfile'
 import ChangePassword from './components/user/ChangePassword'
 import ForgotPassword from './components/user/ForgotPassword'
 import NewPassword from './components/user/NewPassword'
+import Cart from './components/cart/Cart'
+import Shipping from './components/cart/Shipping'
 
 function Layout() {
   return (
@@ -91,6 +93,14 @@ function App() {
         {
           path : '/search/:keyword',
           element : <ProductSearch/>
+        },
+        {
+          path : '/cart',
+          element : <Cart/>
+        },
+        {
+          path : '/shipping',
+          element : <ProtectedRoute><Shipping/></ProtectedRoute> 
         },
         {
           path : '*',
