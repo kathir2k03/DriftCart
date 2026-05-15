@@ -105,3 +105,8 @@ Shipping Component
 npm install countries-list
 
 Checkout Steps
+______________________________________________________________________________________________________________________________
+
+confirm order
+
+Stripe for payment first backend

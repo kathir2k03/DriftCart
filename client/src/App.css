@@ -384,11 +384,13 @@ footer {
 
 .incomplete {
   background: #eeeeee;
+  cursor: not-allowed;
 }
 
 .active-step {
   background: #fa9c23;
   color: #fff;
+  cursor: pointer;
 }
 
 .triangle-active {

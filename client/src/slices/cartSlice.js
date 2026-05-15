@@ -3,9 +3,10 @@ import { createSlice } from '@reduxjs/toolkit'
 const cartSlice = createSlice({
     name: 'cart',
 
-    initialState: { items: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [],
-    loading: false,
-    shippingInfo : localStorage.getItem('shippingInfo') ? JSON.parse(localStorage.getItem('shippingInfo')) : {}
+    initialState: {
+        items: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [],
+        loading: false,
+        shippingInfo: localStorage.getItem('shippingInfo') ? JSON.parse(localStorage.getItem('shippingInfo')) : {}
     },
 
     reducers: {
@@ -14,69 +15,89 @@ const cartSlice = createSlice({
             state.loading = true
         },
 
-        addCartItemSuccess(state, action) {
+addCartItemSuccess(state, action) {
 
-            const item = action.payload
+    const item = action.payload;
 
-            const isItemExist = state.items.find(
-                i => i.product === item.product
-            )
+    const existingItem = state.items.find(
+        i => i.product === item.product
+    );
 
-            if (isItemExist) {
+    if(existingItem){
 
-                state.items = state.items.map(i =>
-                    i.product === isItemExist.product
-                        ? item
-                        : i
-                )
+        state.items = state.items.map(i =>
 
-            } else {
+            i.product === existingItem.product
+                ? item
+                : i
+        )
 
-                state.items.push(item)
+    } else {
 
+        state.items.push(item)
+    }
+
+    localStorage.setItem(
+        'cartItems',
+        JSON.stringify(state.items)
+    )
+},
+
+increaseCartItemQty(state, action) {
+
+    state.items = state.items.map(item => {
+
+        if (item.product === action.payload) {
+
+            if(item.quantity < item.stock){
+                item.quantity = item.quantity + 1
             }
+        }
 
-            state.loading = false
+        return item
+    })
 
-            localStorage.setItem(
-                'cartItems',
-                JSON.stringify(state.items)
-            )
-        },
-        increaseCartItemQty(state, action){
-            state.item = state.item.map(item => {
-                if(item.product == action.payload) {
-                    item.quantity == item.quantity + 1
-                }
-                return item
-            })
-            localStorage.setItem('cartItems', JSON.stringify(state.items))
-        },
-        decreaseCartItemQty(state, action){
-            state.item = state.item.map(item => {
-                if(item.product == action.payload) {
-                    item.quantity == item.quantity - 1
-                }
-                return item
-            })
-            localStorage.setItem('cartItems', JSON.stringify(state.items))
-        },
+    localStorage.setItem(
+        'cartItems',
+        JSON.stringify(state.items)
+    )
+},
+
+decreaseCartItemQty(state, action) {
+
+    state.items = state.items.map(item => {
+
+        if (item.product === action.payload) {
+
+            if(item.quantity > 1){
+                item.quantity = item.quantity - 1
+            }
+        }
+
+        return item
+    })
+
+    localStorage.setItem(
+        'cartItems',
+        JSON.stringify(state.items)
+    )
+},
         removeItemFromCart(state, action) {
             const filterItems = state.items.filter(item => {
                 return item.product !== action.payload
             })
             localStorage.setItem('cartItems', JSON.stringify(state.items))
             return {
-                ...state, 
-                items : filterItems
+                ...state,
+                items: filterItems
             }
         },
-        saveShippingInfo(state, action){
-            localStorage.setItem('shippingInfo', JSON.stringify(state.items))
-                return {
-                    ...state,
-                    shippingInfo : action.payload
-                }
+        saveShippingInfo(state, action) {
+            localStorage.setItem('shippingInfo', JSON.stringify(action.payload))
+            return {
+                ...state,
+                shippingInfo: action.payload
+            }
         }
     }
 })
