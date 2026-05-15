@@ -26,6 +26,7 @@ import ForgotPassword from './components/user/ForgotPassword'
 import NewPassword from './components/user/NewPassword'
 import Cart from './components/cart/Cart'
 import Shipping from './components/cart/Shipping'
+import ConfirmOrder from './components/cart/ConfirmOrder'
 
 function Layout() {
   return (
@@ -102,6 +103,10 @@ function App() {
           path : '/shipping',
           element : <ProtectedRoute><Shipping/></ProtectedRoute> 
         },
+        {
+          path : '/order/confirm',
+          element : <ProtectedRoute><ConfirmOrder/></ProtectedRoute> 
+        },        
         {
           path : '*',
           element : <ErrorPage/>

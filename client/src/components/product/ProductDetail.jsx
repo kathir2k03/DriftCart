@@ -11,10 +11,10 @@ import { addCartItem } from "../../actions/cartActions";
 const ProductDetail = () => {
 
   const { id } = useParams();
-  const { product, loading, error } = useSelector(
-    (state) => state.productState, 
-  );
+  const { product, loading, error } = useSelector((state) => state.productState);
+  const { items } = useSelector(state => state.cartState)
   const dispatch = useDispatch();
+  
   const [quantity, setQuantity] = useState(1)
   const stock = product?.stock
 
@@ -35,7 +35,21 @@ const ProductDetail = () => {
       return toast.error(error);
     }
     dispatch(getProduct(id));
-  }, [error]);
+  }, [dispatch, error, id]);
+
+useEffect(() => {
+
+    const cartItem = items.find(
+        item => item.product === id
+    )
+
+    if(cartItem){
+        setQuantity(cartItem.quantity)
+    } else {
+        setQuantity(1)
+    }
+
+}, [id, items])
   return (
     <Fragment>
       {loading ? (
@@ -104,7 +118,6 @@ const ProductDetail = () => {
               <button
                 type="button"
                 id="cart_btn"
-                className="btn btn-primary d-inline ml-4"
                 className="btn btn-primary d-inline ml-4"
                 style={{
                   cursor: product?.stock == 0 ? "not-allowed" : "pointer"

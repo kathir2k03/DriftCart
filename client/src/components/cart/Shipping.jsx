@@ -5,33 +5,51 @@ import { useState } from "react"
 import { countries } from 'countries-list'
 import { useNavigate } from "react-router-dom"
 import { saveShippingInfo } from "../../slices/cartSlice"
+import { toast } from 'react-toastify'
 import CheckoutSteps from "./CheckoutSteps"
+
+export const validateShipping = (shippingInfo, navigate) => {
+
+    if (
+        !shippingInfo.address ||
+        !shippingInfo.city ||
+        !shippingInfo.state ||
+        !shippingInfo.country ||
+        !shippingInfo.phoneNo ||
+        !shippingInfo.postalCode
+    ) {
+        toast.error("Please fill the shipping information")
+        navigate('/shipping')
+        return false
+    }
+    return true
+}
 
 const Shipping = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {shippingInfo} = useSelector(state => state.cartState)
-    const [address, setAddress] = useState(shippingInfo.address)
-    const [city, setCity] = useState(shippingInfo.city)
-    const [phoneNo, setPhoneNO] = useState(shippingInfo.phoneNo)
-    const [postalCode, setPostalCode] = useState(shippingInfo.postalCode)
-    const [state, setSate] = useState(shippingInfo.state)
-    const [country, setCountry] = useState(shippingInfo.country)
+    const { shippingInfo } = useSelector(state => state.cartState)
+    const [address, setAddress] = useState(shippingInfo.address || "")
+    const [city, setCity] = useState(shippingInfo.city || "")
+    const [phoneNo, setPhoneNO] = useState(shippingInfo.phoneNo || "")
+    const [postalCode, setPostalCode] = useState(shippingInfo.postalCode || "")
+    const [state, setSate] = useState(shippingInfo.state || "")
+    const [country, setCountry] = useState(shippingInfo.country || "")
 
     const countryList = Object.values(countries)
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(saveShippingInfo({address, city, phoneNo, postalCode, state, country}))
+        dispatch(saveShippingInfo({ address, city, phoneNo, postalCode, state, country }))
         navigate('/order/confirm')
     }
 
-    return(
+    return (
         <Fragment>
-            <MetaData title={"Shipping"}/>
-            <CheckoutSteps/>
-        <div className="row wrapper">
+            <MetaData title={"Shipping"} />
+            <CheckoutSteps shipping={true} />
+            <div className="row wrapper">
                 <div className="col-10 col-lg-5">
                     <form className="shadow-lg" onSubmit={submitHandler}>
                         <h1 className="mb-4">Shipping Info</h1>
@@ -93,7 +111,7 @@ const Shipping = () => {
                                 onChange={(e) => setSate(e.target.value)}
                                 required
                             />
-                        </div>                        
+                        </div>
 
                         <div className="form-group">
                             <label htmlFor="country_field">Country</label>
@@ -101,13 +119,14 @@ const Shipping = () => {
                                 id="country_field"
                                 className="form-control"
                                 value={country}
+                                onChange={(e) => setCountry(e.target.value)}
                                 required
-                            > 
-                            {countryList.map((country, index) => (
+                            >
+                                {countryList.map((country, index) => (
                                     <option key={index} value={country?.name}>
                                         {country?.name}
                                     </option>
-                            ))}
+                                ))}
                             </select>
                         </div>
 
@@ -117,10 +136,10 @@ const Shipping = () => {
                             className="btn btn-block py-3"
                         >
                             CONTINUE
-                            </button>
+                        </button>
                     </form>
                 </div>
-            </div>            
+            </div>
         </Fragment>
     )
 }

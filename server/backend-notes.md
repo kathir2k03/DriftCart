@@ -23,6 +23,7 @@ install cookie-parser
 npm install crypto
 npm install nodemailer
 npm install multer
+npm install stripe
 
 Notes:
 - --save-dev → development only
@@ -256,7 +257,11 @@ order admin api services
 ________________________________________________________________________________________________________________________________________________
 
 Product Review APIS 
-
 ________________________________________________________________________________________________________________________________________________
 
+Stripe for backend
+
+npm install stripe
+
+create stripe account in stripe website for developers
 
