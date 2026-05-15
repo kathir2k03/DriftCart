@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
     "axios": "^1.16.0",
+    "countries-list": "^3.3.0",
     "pagination": "^0.4.6",
     "rc-pagination": "^5.1.0",
     "rc-slider": "^11.1.9",

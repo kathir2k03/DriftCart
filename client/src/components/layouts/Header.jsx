@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Search from "./Search"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,12 +8,13 @@ import { logout } from "../../actions/userActions"
 function Header() {
 
   const { isAuthenticated, user } = useSelector(state => state.authState)
+  const { items:cartItems} = useSelector(state => state.cartState)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   function logoutHandler(){
       dispatch(logout())
   }
-  
+
   return (
     <nav className="navbar row">
       <div className="col-12 col-md-3">
@@ -49,9 +50,8 @@ function Header() {
           <Link to={'/login'} className="btn" id="login_btn" >Login</Link>
         }
 
-
-        <span id="cart" className="ml-3">Cart</span>
-        <span className="ml-1" id="cart_count">2</span>
+        <Link to={'/cart'}><span id="cart" className="ml-3">Cart</span></Link>
+        <span className="ml-1" id="cart_count">{cartItems?.length}</span>
       </div>
     </nav>
   )
