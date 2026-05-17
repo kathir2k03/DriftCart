@@ -133,6 +133,17 @@ const updateStock = async (productId, quantity) => {
   await product.save({ validateBeforeSave: false });
 };
 
+//My orders
+exports.myOrders = async(req, res, next) => {
+
+    const orders = await Order.find({ user: req.user.id })
+
+    res.status(200).json({
+        success: true,
+        orders
+    })
+}
+
 // Admin Delete Order - api/v1/order/:id
 
 exports.deleteOrder = async (req, res, next) =>{

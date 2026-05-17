@@ -11,6 +11,8 @@ install packages
 9. npm install rc-slider
 10. npm install rc-tooltip
 11. npm install countries-list
+12. npm install @stripe/react-stripe-js @stripe/stripe-js
+13. npm install react-data-table-component@7.7.0
 
  npm install axios react-helmet-async redux react-redux redux-thunk redux-devtools redux-devtools-extension
 
@@ -110,3 +112,34 @@ ________________________________________________________________________________
 confirm order
 
 Stripe for payment first backend
+
+stripe setup in frontend in App.jsx
+
+Stripe package install 
+
+npm install @stripe/react-stripe-js @stripe/stripe-js
+
+Payment using stripe elements in payment component
+
+next create rOrderComplete reducer to clear local and session storage shippingInfo, cart and product itmes
+
+for stripe test docs datas use https://dashboard.stripe.com/acct_1TXRBTLc78IKlxC6/test/workbench/logs 
+
+4242424242424242
+
+__________________________________________________________________________________________________________________________________
+
+User Orders & Reviews
+
+Order Reducer & action
+
+Order Success Component
+
+_________________________________________________________________________________________________________________________________
+
+User Orders Reducers & Action
+User Order Component npm install react-data-table-component@7.7.0
+
+_______________________________________________________________________________________________________________________________________
+
+Order Detail Component and reducers

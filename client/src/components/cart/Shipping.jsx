@@ -29,7 +29,7 @@ const Shipping = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { shippingInfo } = useSelector(state => state.cartState)
+    const { shippingInfo={} } = useSelector(state => state.cartState)
     const [address, setAddress] = useState(shippingInfo.address || "")
     const [city, setCity] = useState(shippingInfo.city || "")
     const [phoneNo, setPhoneNO] = useState(shippingInfo.phoneNo || "")

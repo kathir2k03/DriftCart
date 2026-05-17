@@ -28,7 +28,7 @@ const Profile = () => {
                  <h4>Joined</h4>
                  <p>{String(user?.createdAt).substring(0,10)}</p>
 
-                 <Link to="#" className="btn btn-danger btn-block mt-5">
+                 <Link to="/orders" className="btn btn-danger btn-block mt-5">
                     My Orders
                 </Link>
 
