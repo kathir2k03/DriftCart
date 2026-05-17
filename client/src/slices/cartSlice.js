@@ -15,73 +15,73 @@ const cartSlice = createSlice({
             state.loading = true
         },
 
-addCartItemSuccess(state, action) {
+        addCartItemSuccess(state, action) {
 
-    const item = action.payload;
+            const item = action.payload;
 
-    const existingItem = state.items.find(
-        i => i.product === item.product
-    );
+            const existingItem = state.items.find(
+                i => i.product === item.product
+            );
 
-    if(existingItem){
+            if (existingItem) {
 
-        state.items = state.items.map(i =>
+                state.items = state.items.map(i =>
 
-            i.product === existingItem.product
-                ? item
-                : i
-        )
+                    i.product === existingItem.product
+                        ? item
+                        : i
+                )
 
-    } else {
+            } else {
 
-        state.items.push(item)
-    }
-
-    localStorage.setItem(
-        'cartItems',
-        JSON.stringify(state.items)
-    )
-},
-
-increaseCartItemQty(state, action) {
-
-    state.items = state.items.map(item => {
-
-        if (item.product === action.payload) {
-
-            if(item.quantity < item.stock){
-                item.quantity = item.quantity + 1
+                state.items.push(item)
             }
-        }
 
-        return item
-    })
+            localStorage.setItem(
+                'cartItems',
+                JSON.stringify(state.items)
+            )
+        },
 
-    localStorage.setItem(
-        'cartItems',
-        JSON.stringify(state.items)
-    )
-},
+        increaseCartItemQty(state, action) {
 
-decreaseCartItemQty(state, action) {
+            state.items = state.items.map(item => {
 
-    state.items = state.items.map(item => {
+                if (item.product === action.payload) {
 
-        if (item.product === action.payload) {
+                    if (item.quantity < item.stock) {
+                        item.quantity = item.quantity + 1
+                    }
+                }
 
-            if(item.quantity > 1){
-                item.quantity = item.quantity - 1
-            }
-        }
+                return item
+            })
 
-        return item
-    })
+            localStorage.setItem(
+                'cartItems',
+                JSON.stringify(state.items)
+            )
+        },
 
-    localStorage.setItem(
-        'cartItems',
-        JSON.stringify(state.items)
-    )
-},
+        decreaseCartItemQty(state, action) {
+
+            state.items = state.items.map(item => {
+
+                if (item.product === action.payload) {
+
+                    if (item.quantity > 1) {
+                        item.quantity = item.quantity - 1
+                    }
+                }
+
+                return item
+            })
+
+            localStorage.setItem(
+                'cartItems',
+                JSON.stringify(state.items)
+            )
+        },
         removeItemFromCart(state, action) {
             const filterItems = state.items.filter(item => {
                 return item.product !== action.payload
@@ -98,6 +98,16 @@ decreaseCartItemQty(state, action) {
                 ...state,
                 shippingInfo: action.payload
             }
+        },
+        orderCompleted(state, action) {
+            localStorage.removeItem('shippingInfo')
+            localStorage.removeItem('cartItems')
+            sessionStorage.removeItem('orderInfo')
+            return {
+                items: [],
+                loading: false,
+                shippingInfo: {}
+            }
         }
     }
 })
@@ -110,7 +120,8 @@ export const {
     increaseCartItemQty,
     decreaseCartItemQty,
     removeItemFromCart,
-    saveShippingInfo
+    saveShippingInfo,
+    orderCompleted
 } = actions
 
 export default reducer
