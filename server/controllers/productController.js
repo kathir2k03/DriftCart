@@ -39,7 +39,7 @@ exports.getProducts = async (req, res, next) => {
 // get single product - /api/v1/product/:id
 exports.getSingleProduct = async (req, res, next) => {
     try {
-        const product = await Product.findById(req.params.id);
+        const product = await Product.findById(req.params.id).populate('reviews.user','name email');
 
         // check if product exists
         if (!product) {
