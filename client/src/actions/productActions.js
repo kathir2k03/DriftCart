@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { productsFail, productsRequest, productsSuccess } from '../slices/productsSlice'
-import { productFail, productRequest, productSuccess } from '../slices/productSlice'
+import { createReviewFail, createReviewRequest, createReviewSuccess, productFail, productRequest, productSuccess } from '../slices/productSlice'
 
 export const getProducts = (keyword, priceChanged, selectedCategory, ratings, currentPage = 1) => async (dispatch) => {  
 
@@ -35,5 +35,19 @@ export const getProduct = (id) => async (dispatch) => {
        dispatch(productSuccess(data))
     }  catch (error) {
         dispatch(productFail(error?.response?.data?.message || error.message))
+    }
+}
+
+export const createReview = (reviewData) => async (dispatch) => {  
+
+    try{
+       dispatch(createReviewRequest())
+       const config = {
+         'content-type' : 'application/json'
+       }
+       const {data} = await axios.put(`/api/v1/review`, reviewData, config)
+       dispatch(createReviewSuccess(data))
+    }  catch (error) {
+        dispatch(createReviewFail(error?.response?.data?.message || error.message))
     }
 }
