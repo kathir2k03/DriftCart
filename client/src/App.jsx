@@ -34,6 +34,9 @@ import axios from 'axios'
 import OrderSuccess from './components/cart/OrderSuccess'
 import UserOrders from './components/order/UserOrders'
 import OrderDetail from './components/order/OrderDetail'
+import Dashboard from './components/admin/Dashboard'
+import ProductList from './components/admin/ProductList'
+import NewProduct from './components/admin/NewProduct'
 
 
 function Layout() {
@@ -48,6 +51,22 @@ function Layout() {
       </div>
 
       <Footer />
+    </>
+  )
+}
+
+function AdminLayout() {
+  return (
+    <>
+      <Header />
+
+      <div >
+        <ToastContainer theme='dark' />
+
+        <Outlet />
+      </div>
+
+ 
     </>
   )
 }
@@ -161,7 +180,24 @@ function App() {
           element: <ErrorPage />
         }
       ]
-    }
+    },
+    {
+      path: '/',
+      element: <AdminLayout />,
+      children: [
+    {   
+          path : 'admin/dashboard',
+          element : <ProtectedRoute isAdmin={true}><Dashboard/></ProtectedRoute>
+    },
+    {
+      path : '/admin/products',
+      element : <ProtectedRoute isAdmin={true}><ProductList/></ProtectedRoute>
+    },
+    {
+      path : '/admin/products/create',
+      element :<ProtectedRoute isAdmin={true}><NewProduct/></ProtectedRoute>
+    }        
+       ] }
   ])
 
   return (

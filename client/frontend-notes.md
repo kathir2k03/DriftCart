@@ -13,6 +13,7 @@ install packages
 11. npm install countries-list
 12. npm install @stripe/react-stripe-js @stripe/stripe-js
 13. npm install react-data-table-component@7.7.0
+14. npm install react-icons
 
  npm install axios react-helmet-async redux react-redux redux-thunk redux-devtools redux-devtools-extension
 
@@ -150,4 +151,19 @@ Review Reducers & action
 
 Submitting Review
 
-Display Review
+Display Review 
+_____________________________________________________________________________________________________________________________________________
+
+Admin Modules 
+
+Admin Sidebar
+
+Dashboard Component and Admin Protect Route -> dashboard counts datas
+
+Admin: Product List -> backend All Product Lists -> FrontEnd slice and actions creation -> list in all products npm install react-icons
+
+_______________________________________________________________________________________________________________________________________
+
+Add new Product
+
+New Product Component create
