@@ -129,16 +129,43 @@ exports.deleteProduct = async (req, res, next) => {
 // create product - /api/v1/products/new
 exports.newProduct = async (req, res, next) => {
 
-    req.body.user = req.user.id // getting from authToken function
+    try {
 
-    const product = await Product.create(req.body)
+        req.body.user = req.user.id
 
-    res.status(201).json({
-        success: true,
-        product
-    })
+        let images = []
+
+        if (req.files && req.files.length > 0) {
+
+            req.files.forEach(file => {
+
+                images.push({
+                    image: `${req.protocol}://${req.get('host')}/uploads/product/${file.filename}`
+                })
+
+            })
+
+        }
+
+        req.body.images = images
+
+        const product = await Product.create(req.body)
+
+        res.status(201).json({
+            success: true,
+            product
+        })
+
+    } catch (error) {
+
+        res.status(400).json({
+            success: false,
+            message: error.message
+        })
+
+    }
+
 }
-
 
 // Create and Update Review - api/v1/review
 

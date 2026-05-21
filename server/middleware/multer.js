@@ -22,7 +22,10 @@ const storage = multer.diskStorage({
         }
 
         // PRODUCTS
-        else if (req.baseUrl.includes('product')) {
+        else if (
+            req.originalUrl.includes('product') ||
+            req.originalUrl.includes('products')
+        ) {
             cb(null, 'uploads/product')
         }
 
