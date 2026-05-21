@@ -167,3 +167,5 @@ ________________________________________________________________________________
 Add new Product
 
 New Product Component create
+
+Admin Delete Product

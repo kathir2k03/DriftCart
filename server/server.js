@@ -10,3 +10,5 @@ app.listen(process.env.PORT,() =>{
 })
 
 // to run the server => nodemon server || npm start || npm run seed
+
+// & "C:\Program Files\MongoDB\Server\8.2\bin\mongod.exe"

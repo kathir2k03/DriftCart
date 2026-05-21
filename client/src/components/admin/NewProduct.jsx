@@ -1,9 +1,88 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import MetaData from "../layouts/MetaData";
 import Sidebar from "./Sidebar";
-
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from "react-router-dom";
+import { createNewProducts } from "../../actions/productActions";
+import { toast } from "react-toastify";
+import { clearProductCreated } from "../../slices/productSlice";
+import { clearError } from "../../slices/productsSlice";
 function NewProduct() {
 
+    const [name, setName] = useState("")
+    const [price, setPrice] = useState("")
+    const [description, setDescription] = useState("")
+    const [category, setCategory] = useState("")
+    const [stock, setStock] = useState(0)
+    const [seller, setSeller] = useState("")
+    const [image, setImages] = useState([])
+    const [imagesPreview, setImagesPreview] = useState([])
+
+    const { loading, isProductCreated, error } = useSelector((state) => state.productState)
+    const categories = [
+        'Electronics',
+        'Mobile Phones',
+        'Laptops',
+        'Accessories',
+        'Headphones',
+        'Food',
+        'Books',
+        'Clothes/Shoes',
+        'Beaty/Health',
+        'Sports'
+    ]
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    function onImageChange(e) {
+        const files = Array.from(e.target.files)
+
+        setImages([])
+        setImagesPreview([])
+
+        files.forEach((file) => {
+            const reader = new FileReader()
+
+            reader.onload = () => {
+                if (reader.readyState === 2) {
+                    setImagesPreview(oldArray => [...oldArray, reader.result])
+                    setImages(oldArray => [...oldArray, file])
+                }
+            }
+
+            reader.readAsDataURL(file)
+        })
+    }
+
+    function submitHandler(e) {
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append("name", name)
+        formData.append("price", price)
+        formData.append("stock", stock)
+        formData.append("description", description)
+        formData.append("seller", seller)
+        formData.append("category", category)
+        image.forEach((image) => {
+            formData.append("images", image)
+        })
+        dispatch(createNewProducts(formData))
+    }
+
+    useEffect(() => {
+        if (isProductCreated) {
+            toast.success("Product Created Successfully", {
+                onOpen: () => dispatch(clearProductCreated())
+            })
+            navigate('/admin/products')
+        }
+        if (error) {
+            toast.error(error, {
+                onOpen: () => { dispatch(clearError()) }
+            })
+        }
+    }, [isProductCreated, dispatch, error, navigate])
     return (
         <Fragment>
             <MetaData title={'Create New Product'} />
@@ -16,7 +95,7 @@ function NewProduct() {
                 <div className="col-12 col-md-10">
 
                     <div className="wrapper my-5">
-                        <form className="shadow-lg" encType='multipart/form-data'>
+                        <form className="shadow-lg" encType='multipart/form-data' onSubmit={submitHandler}>
                             <h1 className="mb-4">New Product</h1>
 
                             <div className="form-group">
@@ -25,7 +104,8 @@ function NewProduct() {
                                     type="text"
                                     id="name_field"
                                     className="form-control"
-                                    value=""
+                                    onChange={(e) => setName(e.target.value)}
+                                    value={name}
                                 />
                             </div>
 
@@ -35,21 +115,27 @@ function NewProduct() {
                                     type="text"
                                     id="price_field"
                                     className="form-control"
-                                    value=""
+                                    onChange={(e) => setPrice(e.target.value)}
+                                    value={price}
                                 />
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="description_field">Description</label>
-                                <textarea className="form-control" id="description_field" rows="8" ></textarea>
+                                <textarea className="form-control"
+                                    id="description_field" rows="8"
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    value={description}></textarea>
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="category_field">Category</label>
-                                <select className="form-control" id="category_field">
-                                    <option>Electronics</option>
-                                    <option>Home</option>
-                                    <option>Others</option>
+                                <select className="form-control" id="category_field"
+                                    value={category} onChange={(e) => setCategory(e.target.value)}>
+                                    <option value="">Select</option>
+                                    {categories.map((category) => (
+                                        <option key={category} value={category}>{category}</option>
+                                    ))}
                                 </select>
                             </div>
                             <div className="form-group">
@@ -58,7 +144,8 @@ function NewProduct() {
                                     type="number"
                                     id="stock_field"
                                     className="form-control"
-                                    value=""
+                                    value={stock}
+                                    onChange={(e) => setStock(e.target.value)}
                                 />
                             </div>
 
@@ -68,7 +155,8 @@ function NewProduct() {
                                     type="text"
                                     id="seller_field"
                                     className="form-control"
-                                    value=""
+                                    onChange={(e) => setSeller(e.target.value)}
+                                    value={seller}
                                 />
                             </div>
 
@@ -82,17 +170,22 @@ function NewProduct() {
                                         className='custom-file-input'
                                         id='customFile'
                                         multiple
+                                        onChange={onImageChange}
                                     />
                                     <label className='custom-file-label' htmlFor='customFile'>
                                         Choose Images
                                     </label>
                                 </div>
+                                {imagesPreview.map((image) => (
+                                    <img src={image} height="52" width="55" key={image} className="mt-3 mr-2" alt={"Image Preview"} />
+                                ))}
                             </div>
 
 
                             <button
                                 id="login_button"
                                 type="submit"
+                                disabled={loading}
                                 className="btn btn-block py-3"
                             >
                                 CREATE

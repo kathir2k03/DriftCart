@@ -14,11 +14,12 @@ import {
 import { FaEdit, FaTrash } from "react-icons/fa";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getAdminProducts } from "../../actions/productActions";
+import { deleteProducts, getAdminProducts } from "../../actions/productActions";
 import { clearError } from "../../slices/productsSlice";
 
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { clearProductDeleted } from "../../slices/productSlice";
 
 const ProductList = () => {
 
@@ -27,6 +28,9 @@ const ProductList = () => {
     const { products = [], loading = true, error } =
         useSelector(state => state.productsState)
 
+    const { error: productError, isProductDeleted } =
+        useSelector(state => state.productState)
+
     const [globalFilter, setGlobalFilter] = useState('')
 
     const [pagination, setPagination] = useState({
@@ -34,17 +38,38 @@ const ProductList = () => {
         pageSize: 10
     })
 
-    useEffect(() => {
+    function deleteNewProducts(id) {
+        dispatch(deleteProducts(id))
+    }
 
-        if (error) {
-            toast.error(error, {
-                onOpen: () => dispatch(clearError())
-            })
-        }
+useEffect(() => {
+
+    if (isProductDeleted) {
+
+        toast.success("Product Deleted Successfully")
+
+        dispatch(clearProductDeleted())
 
         dispatch(getAdminProducts())
+    }
 
-    }, [dispatch, error])
+    if (error) {
+
+        toast.error(error)
+
+        dispatch(clearError())
+    }
+
+    if (productError) {
+
+        toast.error(productError)
+
+        dispatch(clearError())
+    }
+
+    dispatch(getAdminProducts())
+
+}, [dispatch, error, productError, isProductDeleted])
 
     // TABLE DATA
     const data = useMemo(() =>
@@ -98,7 +123,7 @@ const ProductList = () => {
                         />
                     </Link>
 
-                    <Link to={`/delete/${row.original.id}`}>
+                    <div onClick={() => deleteNewProducts(row.original.id)}>
                         <FaTrash
                             style={{
                                 color: 'red',
@@ -106,7 +131,7 @@ const ProductList = () => {
                                 fontSize: '18px'
                             }}
                         />
-                    </Link>
+                    </div>
 
                 </div>
             )
