@@ -193,16 +193,22 @@ exports.newProduct = async (req, res, next) => {
 // Create and Update Review - api/v1/review
 
 exports.createReview = async (req, res, next) => {
-    let images = []
-    
-    if(req.files.length > 0) {
-        req.files.forEach((file) => {
-            let url = `${process.env.BACKEND_URL}/uploads/product/${file.originalname}`
-            images.push({image : url})
-        })
-    }
+let images = []
 
-    req.body.images = images
+if (req.files && req.files.length > 0) {
+
+    req.files.forEach((file) => {
+
+        let url =
+            `${process.env.BACKEND_URL}/uploads/product/${file.originalname}`
+
+        images.push({ image: url })
+
+    })
+
+}
+
+req.body.images = images
 
     const { productId, rating, comment } = req.body
     console.log(req.user.name)
@@ -258,7 +264,7 @@ exports.createReview = async (req, res, next) => {
 
 // Get Review - /api/v1/review
 exports.getReviews = async (req, res, next) => {
-    const product = await Product.findById(req.params.productId)
+    const product = await Product.findById(req.params.productId).populate('reviews.user','name email')
 
     if (!product) {
         res.status(400).json({
@@ -268,7 +274,7 @@ exports.getReviews = async (req, res, next) => {
     }
     res.status(200).json({
         success: true,
-        message: product.reviews
+        reviews: product.reviews
     })
 }
 

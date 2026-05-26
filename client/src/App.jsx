@@ -40,6 +40,9 @@ import NewProduct from './components/admin/NewProduct'
 import UpdateProduct from './components/admin/UpdateProduct'
 import OrderList from './components/admin/OrderList'
 import UpdateOrder from './components/admin/UpdateOrder'
+import UserList from './components/admin/UserList'
+import UpdateUser from './components/admin/UpdateUser'
+import ReviewList from './components/admin/ReviewList'
 
 
 function Layout() {
@@ -211,7 +214,19 @@ function App() {
     {
       path : '/admin/order/:id',
       element : <ProtectedRoute isAdmin={true}><UpdateOrder/></ProtectedRoute>
-    }                   
+    },
+    {
+      path : '/admin/users',
+      element :<ProtectedRoute isAdmin={true}><UserList/></ProtectedRoute>
+    },
+    {
+      path : '/admin/user/:id',
+      element : <ProtectedRoute isAdmin={true}><UpdateUser/></ProtectedRoute>
+    },
+    {
+      path : '/admin/reviews',
+      element : <ProtectedRoute isAdmin={true}><ReviewList/></ProtectedRoute>
+    }                      
        ] }
   ])
 

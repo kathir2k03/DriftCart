@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { adminProductsFail, adminProductsRequest, adminProductsSuccess, productsFail, productsRequest, productsSuccess } from '../slices/productsSlice'
-import { createReviewFail, createReviewRequest, createReviewSuccess, newProductRequest, newProductFail, newProductSuccess, productFail, productRequest, productSuccess, deleteProductRequest, deleteProductSuccess, deleteProductFail, updateProductRequest, updateProductSuccess, updateProductFail } from '../slices/productSlice'
+import { createReviewFail, createReviewRequest, createReviewSuccess, newProductRequest, newProductFail, newProductSuccess, productFail, productRequest, productSuccess, deleteProductRequest, deleteProductSuccess, deleteProductFail, updateProductRequest, updateProductSuccess, updateProductFail, reviewsRequest, reviewsSuccess, reviewsFail, deleteReviewRequest, deleteReviewSuccess, deleteReviewFail } from '../slices/productSlice'
 
 export const getProducts = (keyword, priceChanged, selectedCategory, ratings, currentPage = 1) => async (dispatch) => {  
 
@@ -96,4 +96,47 @@ export const updateProduct = (id, productData) => async (dispatch) => {
    catch(error){
       dispatch(updateProductFail(error?.response?.data?.message || error.message))
    }
+}
+
+// GET REVIEWS
+export const getReviews = (productId) => async (dispatch) => {
+    try {
+
+        dispatch(reviewsRequest())
+
+        const { data } =
+            await axios.get(`/api/v1/admin/review/${productId}`)
+
+        dispatch(reviewsSuccess(data))
+
+    } catch (error) {
+
+        dispatch(
+            reviewsFail(
+                error?.response?.data?.message || error.message
+            )
+        )
+    }
+}
+
+// DELETE REVIEW
+export const deleteReview = (productId, reviewId) => async (dispatch) => {
+    try {
+
+        dispatch(deleteReviewRequest())
+
+        await axios.delete(
+            `/api/v1/admin/review/${productId}/${reviewId}`
+        )
+
+        dispatch(deleteReviewSuccess())
+
+    } catch (error) {
+
+        dispatch(
+            deleteReviewFail(
+                error?.response?.data?.message || error.message
+            )
+        )
+    }
 }

@@ -1,18 +1,19 @@
 import React, { useEffect } from "react"
 import Search from "./Search"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { DropdownButton, Dropdown, Image } from 'react-bootstrap'
 import { logout } from "../../actions/userActions"
 
 function Header() {
-
+  const location = useLocation()
+  const isAdminRoute = location.pathname.includes('/admin')
   const { isAuthenticated, user } = useSelector(state => state.authState)
-  const { items:cartItems} = useSelector(state => state.cartState)
+  const { items: cartItems } = useSelector(state => state.cartState)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  function logoutHandler(){
-      dispatch(logout())
+  function logoutHandler() {
+    dispatch(logout())
   }
 
   return (
@@ -23,9 +24,13 @@ function Header() {
         </div>
       </div>
 
-      <div className="col-12 col-md-6 mt-2 mt-md-0">
-        <Search />
-      </div>
+      {
+        !isAdminRoute && (
+          <div className="col-12 col-md-6 mt-2 mt-md-0">
+            <Search />
+          </div>
+        )
+      }
 
       <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
         {isAuthenticated ?
@@ -42,9 +47,9 @@ function Header() {
               </span>
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              {user.role == "admin" && <Dropdown.Item onClick={() => {navigate('admin/dashboard')}} className="text-dark">Dashboard</Dropdown.Item>}
-              <Dropdown.Item onClick={() => {navigate('/myprofile')}} className="text-dark">Profile</Dropdown.Item>
-              <Dropdown.Item onClick={() => {navigate('/orders')}} className="text-dark">Orders</Dropdown.Item>
+              {user.role == "admin" && <Dropdown.Item onClick={() => { navigate('admin/dashboard') }} className="text-dark">Dashboard</Dropdown.Item>}
+              <Dropdown.Item onClick={() => { navigate('/myprofile') }} className="text-dark">Profile</Dropdown.Item>
+              <Dropdown.Item onClick={() => { navigate('/orders') }} className="text-dark">Orders</Dropdown.Item>
               <Dropdown.Item onClick={logoutHandler} className="text-danger">Logout</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

@@ -26,7 +26,7 @@ function Sidebar() {
                     <ul className="list-unstyled components">
 
                         <li>
-                            <Link to={''}>
+                            <Link to={'/admin/dashboard'}>
                                 <FaTachometerAlt style={{ marginRight: '10px' }} />
                                 Dashboard
                             </Link>

@@ -10,8 +10,8 @@ router.route('/product/:id').get(getSingleProduct)
 
 // review apis
 router.route('/review').put(isAuthenticatedUser, createReview)
-router.route('/review/:id').get(isAuthenticatedUser, getReviews)
-router.route('/review/:productId/:reviewId').delete(isAuthenticatedUser, deleteReview)
+router.route('/admin/review/:productId').get(isAuthenticatedUser, getReviews)
+router.route('/admin/review/:productId/:reviewId').delete(isAuthenticatedUser, deleteReview)
 
 router.route('/admin/products/new').post(isAuthenticatedUser, authorizeRoles('admin'), upload.array('images', 5), newProduct)
 router.route('/admin/product/:id').put(isAuthenticatedUser, authorizeRoles('admin'), upload.array('images', 5), updateProduct)
