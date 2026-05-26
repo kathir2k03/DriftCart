@@ -7,7 +7,9 @@ const productSlice = createSlice({
         isReviewSubmitted : false,
         isProductCreated : false,
         isProductDeleted : false,
-        isProductUpdated : false        
+        isProductUpdated : false,
+        isReviewDeleted : false,
+        reviews : []        
     },
     reducers : {
         productRequest(state, action){
@@ -147,13 +149,59 @@ const productSlice = createSlice({
                 ...state,
                 isProductUpdated : false
             }
-        },                           
+        },     
+        reviewsRequest(state, action){
+            return {
+                ...state,
+                loading : true,
+            }
+        },
+        reviewsSuccess(state, action){
+            return{
+                ...state,
+                loading : false,
+                reviews : action.payload.reviews
+            }
+        },
+        reviewsFail(state, action){
+            return{
+                ...state,
+                loading : false,
+                error : action.payload
+            }
+        },
+        deleteReviewRequest(state, action){
+            return {
+                ...state,
+                loading : true,
+            }
+        },
+        deleteReviewSuccess(state, action){
+            return{
+                ...state,
+                loading : false,
+                isReviewDeleted : true
+            }
+        },
+        deleteReviewFail(state, action){
+            return{
+                ...state,
+                loading : false,
+                error : action.payload,
+            }
+        },   
+        clearReviewDeleted(state, action){
+            return{
+                ...state,
+                isReviewDeleted : false
+            }
+        }                                      
     }
 })
 
 //action creater
 const { actions, reducer } = productSlice
 
-export const {productRequest, productSuccess, productFail, createReviewRequest, createReviewSuccess, createReviewFail, clearReviewSubmitted, clearError, clearProduct, newProductRequest, newProductSuccess, newProductFail, clearProductCreated, deleteProductRequest, deleteProductSuccess, deleteProductFail, clearProductDeleted,updateProductRequest, updateProductSuccess, updateProductFail, clearProductUpdated } = actions
+export const {productRequest, productSuccess, productFail, createReviewRequest, createReviewSuccess, createReviewFail, clearReviewSubmitted, clearError, clearProduct, newProductRequest, newProductSuccess, newProductFail, clearProductCreated, deleteProductRequest, deleteProductSuccess, deleteProductFail, clearProductDeleted,updateProductRequest, updateProductSuccess, updateProductFail, clearProductUpdated, reviewsRequest, reviewsSuccess, reviewsFail, deleteReviewRequest, deleteReviewSuccess, deleteReviewFail, clearReviewDeleted } = actions
 
 export default reducer

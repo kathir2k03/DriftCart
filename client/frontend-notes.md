@@ -174,4 +174,11 @@ Edit Product
 
 Admin Order LIST/UPDATE/DELETE
 
-Admin Users LIST/UPDATE/DELETE
+Admin Users LIST/UPDATE/DELETE -> Create Slice for single, all, delete, update and clearUserDelete, clearUserUpdated, clearError 
+
+Admin : Reviews List / Delete 
+
+Dashboard Dynamic Count 
+
+_________________________________________________________________________________________________________________________________________
+
