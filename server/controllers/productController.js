@@ -67,6 +67,29 @@ exports.updateProduct = async (req, res, next) => {
     try {
         let product = await Product.findById(req.params.id);
 
+                req.body.user = req.user.id
+
+        let images = []
+
+        // if images not cleared we keep existing images
+        if(req.body.imagesCleared === 'false') {
+            images = product.images;
+        }
+
+        if (req.files && req.files.length > 0) {
+
+            req.files.forEach(file => {
+
+                images.push({
+                    image: `${req.protocol}://${req.get('host')}/uploads/product/${file.filename}`
+                })
+
+            })
+
+        }
+
+        req.body.images = images
+
         // check if product exists
         if (!product) {
             return res.status(404).json({

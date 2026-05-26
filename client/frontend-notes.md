@@ -169,3 +169,9 @@ Add new Product
 New Product Component create
 
 Admin Delete Product
+
+Edit Product
+
+Admin Order LIST/UPDATE/DELETE
+
+Admin Users LIST/UPDATE/DELETE
