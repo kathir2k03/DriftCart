@@ -166,7 +166,10 @@ const ProductDetail = () => {
                 style={{
                   cursor: product?.stock == 0 ? "not-allowed" : "pointer"
                 }}
-                onClick={() => dispatch(addCartItem(product?._id, quantity))}
+                onClick={() => {
+                  dispatch(addCartItem(product?._id, quantity))
+                  toast.success('Cart Items Added')
+                }}
                 disabled={product?.stock == 0 ? true : false}
               >
                 Add to Cart

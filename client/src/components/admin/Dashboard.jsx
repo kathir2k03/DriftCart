@@ -6,7 +6,6 @@ import { getAdminProducts } from "../../actions/productActions";
 
 function Dashboard(){
     const { products = [] } = useSelector((state) => state.productsState)
-    console.log(products)
     const dispatch = useDispatch()
 
     let outOfStock = 0
