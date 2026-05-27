@@ -343,7 +343,7 @@ const ReviewList = () => {
                                             <tr
                                                 key={headerGroup.id}
                                                 style={{
-                                                    backgroundColor: '#232F3E',
+                                                    backgroundColor: '#030303',
                                                     color: '#fff'
                                                 }}
                                             >
