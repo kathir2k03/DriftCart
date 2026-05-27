@@ -47,8 +47,8 @@ const UpdateProfile = () => {
         if(user) {
             setName(user.name)
             setEmail(user.email)
-            if(user.avatar){
-                setAvatarPreview(user.avatar)
+            if(user?.avatar){
+                setAvatarPreview(user?.avatar)
             }  
         }
         if(isUpdated){

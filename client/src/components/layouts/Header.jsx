@@ -28,7 +28,7 @@ function Header() {
           <Dropdown className="d-inline">
             <Dropdown.Toggle variant="default text-white pr-5" id='dropdown-basic'>
               <figure className="avatar avatar-nav">
-                <Image width="50px" src={user.avatar ?? './images/default_avatar.webp'}></Image>
+                <Image width="50px" src={user?.avatar ?? './images/default_avatar.webp'}></Image>
               </figure>
               <span className="d-inline-block text-truncate align-middle"
                 style={{ maxWidth: '100px' }}
