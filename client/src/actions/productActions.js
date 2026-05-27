@@ -4,7 +4,7 @@ import { createReviewFail, createReviewRequest, createReviewSuccess, newProductR
 
 export const getProducts = (keyword, priceChanged, selectedCategory, ratings, currentPage = 1) => async (dispatch) => {  
 
-    let link = `/api/v1/products?page=${currentPage}&limit=2`
+    let link = `/api/v1/products?page=${currentPage}&limit=8`
 
     if(keyword && selectedCategory === ""){
        link += `&keyword=${keyword}` 

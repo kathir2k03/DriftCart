@@ -112,7 +112,7 @@ exports.forgotPassword = async (req, res, next) => {
         // creating uitlity email function to avoid recode email function
         await sendEmail({
             email: user.email,
-            subject: "E-commerce Password Recovery",
+            subject: "DriftCart Password Recovery",
             message
         })
 

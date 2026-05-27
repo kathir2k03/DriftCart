@@ -1,6 +1,6 @@
 html,
 body {
-  font-family: 'Amazon Ember';
+  font-family: "Amazon Ember";
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -26,13 +26,17 @@ body {
   border-radius: 5px;
 }
 
+.logo-img {
+  width: 150px;
+}
+
 nav {
-  background-color: #232f3e;
+  background-color: #030303;
   padding: 1rem 1rem;
 }
 
 #search_btn {
-  background-color: #febd69;
+  background-color: #e71319;
 }
 
 .input-group {
@@ -47,7 +51,7 @@ nav {
 
 #login_btn,
 #view_btn {
-  background-color: #febd69;
+  background-color: #e71319;
   padding: 0.4rem 1.8rem;
   font-family: calibri;
 }
@@ -58,7 +62,7 @@ nav {
 }
 
 #cart_count {
-  background-color: #febd69;
+  background-color: #e71319;
   padding: 0.2rem 0.5rem;
   border-radius: 0.2rem;
   color: black;
@@ -80,7 +84,7 @@ nav {
 }
 
 .card-title a:hover {
-  color: #fa9c23;
+  color: #cb0c13;
   text-decoration: none;
 }
 
@@ -93,7 +97,7 @@ nav {
 }
 
 #view_btn {
-  background-color: #fa9c23;
+  background-color: #cb0c13;
   color: white;
 }
 
@@ -131,7 +135,7 @@ footer {
 }
 
 .rating-outer::before {
-  content: '\f006 \f006 \f006 \f006 \f006';
+  content: "\f006 \f006 \f006 \f006 \f006";
 }
 
 .rating-inner {
@@ -144,7 +148,7 @@ footer {
 }
 
 .rating-inner::before {
-  content: '\f005 \f005 \f005 \f005 \f005';
+  content: "\f005 \f005 \f005 \f005 \f005";
   color: #f8ce0b;
 }
 
@@ -162,7 +166,7 @@ footer {
 #cart_btn,
 #review_btn {
   border-radius: 2rem;
-  background-color: #fa9c23;
+  background-color: #cb0c13;
   border: none;
   padding: 0.5rem 2rem;
 }
@@ -201,14 +205,14 @@ footer {
   padding-left: 0;
 }
 .loader:after {
-  content: ' ';
+  content: " ";
   display: block;
   width: 64px;
   height: 64px;
   margin: 8px;
   border-radius: 50%;
-  border: 6px solid #fa9c23;
-  border-color: #fa9c23 transparent;
+  border: 6px solid #cb0c13;
+  border-color: #cb0c13 transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
 @keyframes lds-dual-ring {
@@ -240,22 +244,22 @@ footer {
 }
 
 #card_item_price {
-  color: #febd69;
+  color: #e71319;
   font-weight: bold;
   font-size: 1.4rem;
 }
 
 #checkout_btn,
 .review-btn {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #cb0c13;
+  border-color: #cb0c13;
   margin-top: 2rem;
   border-radius: 5rem;
 }
 
 #view_order_details {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #cb0c13;
+  border-color: #cb0c13;
 }
 
 #order_summary {
@@ -307,8 +311,8 @@ footer {
 }
 
 .wrapper form .btn {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #cb0c13;
+  border-color: #cb0c13;
   color: white;
   margin-top: 2.5rem;
 }
@@ -388,7 +392,7 @@ footer {
 }
 
 .active-step {
-  background: #fa9c23;
+  background: #cb0c13;
   color: #fff;
   cursor: pointer;
 }
@@ -397,7 +401,7 @@ footer {
   float: left;
   width: 0;
   border-top: 20px solid transparent;
-  border-left: 15px solid #fa9c23;
+  border-left: 15px solid #cb0c13;
   border-bottom: 20px solid transparent;
   margin-left: -1px;
 }
@@ -405,9 +409,9 @@ footer {
 .triangle2-active {
   width: 0;
   float: left;
-  border-top: 20px solid #fa9c23;
+  border-top: 20px solid #cb0c13;
   border-left: 15px solid #fff;
-  border-bottom: 20px solid #fa9c23;
+  border-bottom: 20px solid #cb0c13;
   margin-right: -1px;
 }
 
@@ -447,8 +451,8 @@ footer {
 }
 
 #edit_profile {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #cb0c13;
+  border-color: #cb0c13;
 }
 
 /* Confirm Order */
@@ -459,8 +463,8 @@ footer {
 }
 
 .update-btn {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #cb0c13;
+  border-color: #cb0c13;
   color: white;
 }
 
@@ -470,16 +474,16 @@ footer {
 
 /* Pagination */
 .page-item.active .page-link {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #cb0c13;
+  border-color: #cb0c13;
 }
 
 .page-link {
-  color: #fa9c23;
+  color: #cb0c13;
 }
 
 .page-link:hover {
-  color: #fa9c23;
+  color: #cb0c13;
 }
 
 /* Admin Sidebar */
@@ -500,7 +504,7 @@ footer {
 #sidebar {
   min-width: 100%;
   max-width: 100%;
-  background: #232f3e;
+  background: #030303;
   color: #fff;
   transition: all 0.3s;
 }
@@ -510,11 +514,11 @@ footer {
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: #232f3e;
+  background: #030303;
 }
 #sidebar ul.components {
   padding: 5px 0px;
-  border-bottom: 1px solid #232f3e;
+  border-bottom: 1px solid #030303;
 }
 
 #sidebar ul li a {
@@ -525,7 +529,7 @@ footer {
   text-decoration: none;
 }
 #sidebar ul li div.dropdown-menu a {
-  color: black  ;
+  color: black;
 }
 
 #sidebar ul li a i {
@@ -533,11 +537,11 @@ footer {
 }
 
 #sidebar ul li.active > a,
-a[aria-expanded='true'] {
+a[aria-expanded="true"] {
   color: #fff;
-  background: #232f3e;
+  background: #030303;
 }
-a[data-toggle='collapse'] {
+a[data-toggle="collapse"] {
   position: relative;
 }
 .dropdown-toggle::after {
@@ -551,7 +555,7 @@ a[data-toggle='collapse'] {
 ul ul a {
   font-size: 1rem !important;
   padding-left: 30px !important;
-  background: #232f3e;
+  background: #030303;
 }
 
 ul.CTAs {
@@ -604,7 +608,7 @@ ul.CTAs a {
 }
 
 .orange {
-  color: #fa9c23;
+  color: #cb0c13;
 }
 
 .yellow {
@@ -616,7 +620,7 @@ ul.CTAs a {
   color: grey;
 }
 
-.pagination-div{
+.pagination-div {
   display: flex;
   justify-content: center;
 }
@@ -662,13 +666,13 @@ ul.CTAs a {
 }
 
 .pagination .rc-pagination-item-active {
-  background-color: #ffd814;
-  border-color: #fcd200;
+  background-color: #cb0c13;
+  border-color: #e71319;
   font-weight: 600;
 }
 
 .pagination .rc-pagination-item-active a {
-  color: #0f1111;
+  color: #fcf1f1;
 }
 
 .pagination .rc-pagination-prev,
@@ -689,25 +693,25 @@ ul.CTAs a {
   padding: 0 12px;
 }
 
-.reset-btn{
-    border: 1px solid #d5d9d9;
-    background: #fff;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: 0.2s;
+.reset-btn {
+  border: 1px solid #d5d9d9;
+  background: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.reset-btn:hover{
-    background: #f7fafa;
+.reset-btn:hover {
+  background: #f7fafa;
 }
 
 .filter-item:hover {
   background-color: #fff7e6;
   color: #ff9900;
   transform: translateX(5px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .filter-item.active {
@@ -715,4 +719,23 @@ ul.CTAs a {
   color: #ff9900;
   font-weight: bold;
   border: 1px solid #ff9900;
+}
+
+.login-btn {
+  padding: 8px 20px;
+  font-size: 16px;
+}
+
+.header-navbar {
+  z-index: 99;
+}
+
+@media (max-width: 660px) {
+  .logo-img {
+    width: 120px;
+  }
+  .login-btn {
+    padding: 4px 12px;
+    font-size: 14px;
+  }
 }

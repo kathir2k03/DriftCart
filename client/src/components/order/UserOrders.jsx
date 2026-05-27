@@ -58,7 +58,7 @@ function UserOrders() {
                 const status = info.getValue()
                 const colors = {
                     Delivered: { background: '#d1fae5', color: '#065f46' },
-                    Processing: { background: '#fef3c7', color: '#92400e' },
+                    Processing: { background: '#FFF1F2', color: '#92400e' },
                     Shipped: { background: '#dbeafe', color: '#1e40af' },
                     Cancelled: { background: '#fee2e2', color: '#991b1b' },
                 }
@@ -76,7 +76,7 @@ function UserOrders() {
             enableGlobalFilter: false,
             cell: ({ row }) => (
                 <Link to={`/order/${row.original.id}`}>
-                    <button style={{ backgroundColor: '#f0c14b', border: '1px solid #a88734', color: '#111', fontSize: '12px', fontWeight: '500', padding: '5px 14px', borderRadius: '4px', cursor: 'pointer' }}>
+                    <button style={{ backgroundColor: '#CB0C13', border: '1px solid #CB0C13', color: '#E9E9E9', fontSize: '12px', fontWeight: '500', padding: '5px 14px', borderRadius: '4px', cursor: 'pointer' }}>
                         View
                     </button>
                 </Link>
@@ -189,7 +189,7 @@ function UserOrders() {
                                         <tr
                                             key={row.id}
                                             style={{ backgroundColor: index % 2 === 0 ? '#ffffff' : '#f9fafb', borderBottom: '1px solid #e5e7eb', cursor: 'default' }}
-                                            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#fefce8'}
+                                            onMouseEnter={e => e.currentTarget.style.backgroundColor = '#FEE2E2'}
                                             onMouseLeave={e => e.currentTarget.style.backgroundColor = index % 2 === 0 ? '#ffffff' : '#f9fafb'}
                                         >
                                             {row.getVisibleCells().map(cell => (
@@ -226,7 +226,7 @@ function UserOrders() {
                                 <button
                                     key={i}
                                     onClick={() => table.setPageIndex(i)}
-                                    style={{ padding: '6px 12px', fontSize: '13px', border: '1px solid', borderRadius: '4px', cursor: 'pointer', backgroundColor: table.getState().pagination.pageIndex === i ? '#f0c14b' : '#fff', borderColor: table.getState().pagination.pageIndex === i ? '#a88734' : '#d1d5db', color: table.getState().pagination.pageIndex === i ? '#111' : '#374151', fontWeight: table.getState().pagination.pageIndex === i ? '600' : '400' }}
+                                    style={{ padding: '6px 12px', fontSize: '13px', border: '1px solid', borderRadius: '4px', cursor: 'pointer', backgroundColor: table.getState().pagination.pageIndex === i ? '#CB0C13' : '#fff', borderColor: table.getState().pagination.pageIndex === i ? '#CB0C13' : '#d1d5db', color: table.getState().pagination.pageIndex === i ? '#E9E9E9' : '#374151', fontWeight: table.getState().pagination.pageIndex === i ? '600' : '400' }}
                                 >
                                     {i + 1}
                                 </button>

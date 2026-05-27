@@ -17,22 +17,13 @@ function Header() {
   }
 
   return (
-    <nav className="navbar row">
-      <div className="col-12 col-md-3">
+    <nav className="navbar row align-items-center justify-content-between sticky-top header-navbar">
+      <div className="col-2 md:col-3">
         <div className="navbar-brand">
-          <Link to={'/'}><img width="150px" className="cursor-pointer" src="/images/logo.png" /></Link>
+          <Link to={'/'}><img className="cursor-pointer logo-img" src="/images/logo.jpeg" /></Link>
         </div>
       </div>
-
-      {
-        !isAdminRoute && (
-          <div className="col-12 col-md-6 mt-2 mt-md-0">
-            <Search />
-          </div>
-        )
-      }
-
-      <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
+      <div className="col-8 col-md-4 col-lg-3 mt-2 mt-md-0 text-end order-2 order-md-3">
         {isAuthenticated ?
           <Dropdown className="d-inline">
             <Dropdown.Toggle variant="default text-white pr-5" id='dropdown-basic'>
@@ -54,12 +45,23 @@ function Header() {
             </Dropdown.Menu>
           </Dropdown>
           :
-          <Link to={'/login'} className="btn" id="login_btn" >Login</Link>
+          <Link to={'/login'} className="btn login-btn" id="login_btn">Login</Link>
         }
 
-        <Link to={'/cart'}><span id="cart" className="ml-3">Cart</span></Link>
+        <Link to={'/cart'}><span id="cart" className="ml-1 md:ml-3">Cart</span></Link>
         <span className="ml-1" id="cart_count">{cartItems?.length}</span>
       </div>
+      {
+        !isAdminRoute && (
+          <div className="col-12 col-md-5 col-lg-6 mt-2 mt-md-0 d-flex justify-content-center order-3 order-md-2">
+            <div className="w-100 px-2 px-md-0">
+              <Search />
+            </div>
+          </div>
+        )
+      }
+
+
     </nav>
   )
 }
