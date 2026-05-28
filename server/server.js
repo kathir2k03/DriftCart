@@ -1,14 +1,19 @@
-const app = require('./app')
-const connectDatabase = require('./config/database')
+const app = require('./app');
+const connectDatabase = require('./config/database');
 
+connectDatabase();
 
+console.log("CLOUDINARY NAME:", process.env.CLOUDINARY_NAME);
 
-connectDatabase()
+// LOCAL ONLY
+if (process.env.NODE_ENV !== "production") {
 
-app.listen(process.env.PORT,() =>{
-    console.log(`Server is istening to the port : ${process.env.PORT}`)
-})
+    const PORT = process.env.PORT || 8000;
 
-// to run the server => nodemon server || npm start || npm run seed
+    app.listen(PORT, () => {
+        console.log(`Server is listening on port : ${PORT}`);
+    });
 
-// & "C:\Program Files\MongoDB\Server\8.2\bin\mongod.exe"
+}
+
+module.exports = app;

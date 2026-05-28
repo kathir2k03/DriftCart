@@ -11,10 +11,10 @@ dotenv.config({
 });
 
 // debug
-console.log("DB URI:", process.env.DB_LOCAL_URI);
+console.log("DB URI:", process.env.MONGO_URI);
 
 // connect DB
-mongoose.connect(process.env.DB_LOCAL_URI)
+mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB connected"))
 .catch(err => console.log(err));
 
