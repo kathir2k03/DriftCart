@@ -17,7 +17,7 @@ npm install mongoose
 npm install dotenv
 npm install nodemon --save-dev
 npm install validator 
-npm install bcrypt
+npm install bcryptjs
 npm install jsonwebtoken
 install cookie-parser
 npm install crypto
@@ -191,7 +191,7 @@ ________________________________________________________________________________
 Create user API
 
 for email validation npm install validator 
-for password hase use npm install bcrypt
+for password hase use npm install bcryptjs
 
 ____________________________________________________________________________________________________
 
