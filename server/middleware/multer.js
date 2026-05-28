@@ -1,38 +1,64 @@
-const multer = require("multer");
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
-const cloudinary = require("../config/cloudinary");
+const multer = require('multer')
+const path = require('path')
+const fs = require('fs')
 
-// STORAGE CONFIG
-const storage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: async (req, file) => {
-        let folder = "draftkart";
+// CREATE FOLDERS
+if (!fs.existsSync('uploads/users')) {
+    fs.mkdirSync('uploads/users', { recursive: true })
+}
 
-        // separate folders (like your old system)
-        if (req.baseUrl.includes("user")) {
-            folder = "draftkart/users";
-        } else if (
-            req.originalUrl.includes("product")
-        ) {
-            folder = "draftkart/products";
+if (!fs.existsSync('uploads/product')) {
+    fs.mkdirSync('uploads/product', { recursive: true })
+}
+
+// STORAGE
+const storage = multer.diskStorage({
+
+    destination: function (req, file, cb) {
+
+        // USERS
+        if (req.baseUrl.includes('user')) {
+            cb(null, 'uploads/users')
         }
 
-        return {
-            folder: folder,
-            allowed_formats: ["jpg", "jpeg", "png", "webp"]
-        };
+        // PRODUCTS
+        else if (
+            req.originalUrl.includes('product') ||
+            req.originalUrl.includes('products')
+        ) {
+            cb(null, 'uploads/product')
+        }
+
+        // DEFAULT
+        else {
+            cb(null, 'uploads')
+        }
+    },
+
+    filename: function (req, file, cb) {
+
+        const ext = path.extname(file.originalname)
+
+        cb(null, Date.now() + ext)
     }
-});
+
+})
 
 // FILE FILTER
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype.startsWith("image")) {
-        cb(null, true);
+
+    if (file.mimetype.startsWith('image')) {
+        cb(null, true)
     } else {
-        cb(new Error("Only images are allowed"), false);
+        cb(new Error('Only images are allowed'), false)
     }
-};
 
-const upload = multer({ storage, fileFilter });
+}
 
-module.exports = upload;
+// MULTER
+const upload = multer({
+    storage,
+    fileFilter
+})
+
+module.exports = upload
