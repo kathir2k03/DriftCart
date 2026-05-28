@@ -24,6 +24,8 @@ npm install crypto
 npm install nodemailer
 npm install multer
 npm install stripe
+npm install -g vercel 
+npm install cloudinary multer multer-storage-cloudinary
 
 Notes:
 - --save-dev → development only
@@ -265,3 +267,16 @@ npm install stripe
 
 create stripe account in stripe website for developers
 
+____________________________________________________________________________________________________________________________________________
+
+Database Atlas then set atlas config URL 
+MONGO_URI=mongodb+srv://kathiravan:x2igkathir..@driftcart-cluster.bnyead8.mongodb.net/?appName=driftcart-cluster
+
+___________________________________________________________________________________________________________________________________________
+
+Set Backend vercel for that 
+
+npm install -g vercel 
+
+for cloud image use Cloudinary
+npm install cloudinary multer multer-storage-cloudinary 

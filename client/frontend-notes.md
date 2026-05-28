@@ -182,3 +182,6 @@ Dashboard Dynamic Count
 
 _________________________________________________________________________________________________________________________________________
 
+Color Code Logos change, nav responsive and vercel deploy get vercel link
+
+next database cloud atlas see backend notes

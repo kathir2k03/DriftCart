@@ -81,7 +81,7 @@ exports.updateProduct = async (req, res, next) => {
             req.files.forEach(file => {
 
                 images.push({
-                    image: `${req.protocol}://${req.get('host')}/uploads/product/${file.filename}`
+                    image: file.path
                 })
 
             })
@@ -162,9 +162,9 @@ exports.newProduct = async (req, res, next) => {
 
             req.files.forEach(file => {
 
-                images.push({
-                    image: `${req.protocol}://${req.get('host')}/uploads/product/${file.filename}`
-                })
+images.push({
+    image: file.path
+});
 
             })
 
@@ -198,11 +198,7 @@ let images = []
 if (req.files && req.files.length > 0) {
 
     req.files.forEach((file) => {
-
-        let url =
-            `${process.env.BACKEND_URL}/uploads/product/${file.originalname}`
-
-        images.push({ image: url })
+images.push({ image: url });
 
     })
 
