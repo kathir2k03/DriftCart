@@ -2,9 +2,8 @@ const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
 const path = require('path');
-const dotenv = require('dotenv');
-
-dotenv.config({ path: "config/config.env" });
+const dotenv = require('dotenv')
+dotenv.config()
 
 // (optional backup)
 // require('dotenv').config();
@@ -36,8 +35,6 @@ app.get("/cloudinary-test", async (req, res) => {
         });
 
     } catch (error) {
-
-        console.log("CLOUDINARY ERROR FULL:", error);
 
         return res.status(500).json({
             success: false,

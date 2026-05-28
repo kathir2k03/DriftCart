@@ -7,6 +7,5 @@ cloudinary.config({
 });
 
 // DEBUG (IMPORTANT)
-console.log("CLOUDINARY LOADED:", process.env.CLOUDINARY_NAME);
 
 module.exports = cloudinary;
