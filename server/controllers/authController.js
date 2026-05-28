@@ -8,9 +8,9 @@ exports.registerUser = async (req, res, next) => {
 
     try {
         const { name, email, password } = req.body;
-        const avatar = req.file
-            ? `${process.env.BACKEND_URL}/uploads/users/${req.file.filename}`
-            : `${process.env.BACKEND_URL}/uploads/users/default_avatar.webp`
+const avatar = req.file
+    ? req.file.path
+    : "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1/default_avatar.webp"
 
         const user = await User.create({
             name,
@@ -218,7 +218,7 @@ exports.updateProfile = async (req, res, next) => {
 
     let avatar
     if (req.file) {
-        avatar = `${process.env.BACKEND_URL}/uploads/users/${req.file.filename}`
+        avatar = req.file.path
         newUserData = { ...newUserData, avatar}
     }
 
