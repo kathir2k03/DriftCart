@@ -1,5 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
+console.log("STRIPE_SECRET_KEY =", process.env.STRIPE_SECRET_KEY)
+console.log("STRIPE_API_KEY =", process.env.STRIPE_API_KEY)
 exports.processPayment = async (req, res, next) => {
 
     const paymentIntent = await stripe.paymentIntents.create({

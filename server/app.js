@@ -8,6 +8,9 @@ dotenv.config()
 // (optional backup)
 // require('dotenv').config();
 
+console.log("ENV CHECK:")
+console.log("STRIPE_SECRET_KEY =", process.env.STRIPE_SECRET_KEY)
+console.log("STRIPE_API_KEY =", process.env.STRIPE_API_KEY)
 app.use(express.json());
 app.use(cookieParser());
 const cloudinary = require("./config/cloudinary");
