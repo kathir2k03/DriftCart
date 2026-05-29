@@ -92,10 +92,10 @@ function cancelDeleteUser() {
     // TABLE DATA
     const data = useMemo(() =>
         users?.map(user => ({
-            id: user._id,
+            id: user?._id,
             name: user?.name,
-            email: user.email,
-            role: user.role
+            email: user?.email,
+            role: user?.role
         })) ?? [],
         [users]
     )
@@ -263,7 +263,7 @@ function cancelDeleteUser() {
 
                                 <input
                                     type="text"
-                                    placeholder="Search User..."
+                                    placeholder="Search user?..."
                                     value={globalFilter ?? ''}
                                     onChange={(e) => {
                                         setGlobalFilter(e.target.value)
