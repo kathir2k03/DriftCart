@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require("cors");
 const app = express();
 const cookieParser = require('cookie-parser');
 const path = require('path');
@@ -9,6 +10,15 @@ const path = require('path');
 console.log("ENV CHECK:")
 console.log("STRIPE_SECRET_KEY =", process.env.STRIPE_SECRET_KEY)
 console.log("STRIPE_API_KEY =", process.env.STRIPE_API_KEY)
+
+app.use(cors({
+    origin: [
+        "http://localhost:5173",
+        "https://driftcart-frontend.vercel.app"
+    ],
+    credentials: true
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 const cloudinary = require("./config/cloudinary");
