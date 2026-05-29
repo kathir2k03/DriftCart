@@ -1,5 +1,5 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-
+const Stripe = require('stripe');
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 console.log("STRIPE_SECRET_KEY =", process.env.STRIPE_SECRET_KEY)
 console.log("STRIPE_API_KEY =", process.env.STRIPE_API_KEY)
 exports.processPayment = async (req, res, next) => {

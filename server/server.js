@@ -1,7 +1,10 @@
+require('dotenv').config({ path: './config/config.env' });
 const app = require('./app');
 const connectDatabase = require('./config/database');
 
 connectDatabase();
+
+console.log("CLOUDINARY NAME:", process.env.CLOUDINARY_NAME);
 
 // LOCAL ONLY
 if (process.env.NODE_ENV !== "production") {
