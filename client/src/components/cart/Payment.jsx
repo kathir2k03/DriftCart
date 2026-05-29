@@ -10,6 +10,7 @@ import { toast } from "react-toastify"
 import { orderCompleted } from "../../slices/cartSlice"
 import { createOrder } from "../../actions/orderActions"
 import { clearError as clearOrderError } from "../../slices/orderSlice"
+import API from "../../config/api"
 
 const Payment = () => {
     
@@ -66,7 +67,7 @@ async function submitHandler(e) {
     try {
 
         const { data } = await axios.post(
-            '/api/v1/payment/process',
+            `${API}/api/v1/payment/process`,
             paymentData
         )
 

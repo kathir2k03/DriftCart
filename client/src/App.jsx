@@ -43,6 +43,7 @@ import UpdateOrder from './components/admin/UpdateOrder'
 import UserList from './components/admin/UserList'
 import UpdateUser from './components/admin/UpdateUser'
 import ReviewList from './components/admin/ReviewList'
+import API from "./config/api";
 
 
 function Layout() {
@@ -86,7 +87,7 @@ function App() {
 
     async function getStripeKey() {
       try {
-        const { data } = await axios.get('/api/v1/stripeapi');
+        const { data } = await axios.get(`${API}/api/v1/stripeapi`);
 
         setStripeApiKey(data.stripeApiKey);
         setStripePromise(loadStripe(data.stripeApiKey));

@@ -1,10 +1,11 @@
 import axios from 'axios'
 import { adminProductsFail, adminProductsRequest, adminProductsSuccess, productsFail, productsRequest, productsSuccess } from '../slices/productsSlice'
 import { createReviewFail, createReviewRequest, createReviewSuccess, newProductRequest, newProductFail, newProductSuccess, productFail, productRequest, productSuccess, deleteProductRequest, deleteProductSuccess, deleteProductFail, updateProductRequest, updateProductSuccess, updateProductFail, reviewsRequest, reviewsSuccess, reviewsFail, deleteReviewRequest, deleteReviewSuccess, deleteReviewFail } from '../slices/productSlice'
+import API from '../config/api'
 
 export const getProducts = (keyword, priceChanged, selectedCategory, ratings, currentPage = 1) => async (dispatch) => {  
 
-    let link = `/api/v1/products?page=${currentPage}&limit=8`
+    let link = `${API}/api/v1/products?page=${currentPage}&limit=8`
 
     if(keyword && selectedCategory === ""){
        link += `&keyword=${keyword}` 
@@ -31,7 +32,7 @@ export const getProduct = (id) => async (dispatch) => {
 
     try{
        dispatch(productRequest())
-       const {data} = await axios.get(`/api/v1/product/${id}`)
+       const {data} = await axios.get(`${API}/api/v1/product/${id}`)
        dispatch(productSuccess(data))
     }  catch (error) {
         dispatch(productFail(error?.response?.data?.message || error.message))
@@ -45,7 +46,7 @@ export const createReview = (reviewData) => async (dispatch) => {
        const config = {
          'content-type' : 'application/json'
        }
-       const {data} = await axios.put(`/api/v1/review`, reviewData, config)
+       const {data} = await axios.put(`${API}/api/v1/review`, reviewData, config)
        dispatch(createReviewSuccess(data))
     }  catch (error) {
         dispatch(createReviewFail(error?.response?.data?.message || error.message))
@@ -55,7 +56,7 @@ export const createReview = (reviewData) => async (dispatch) => {
 export const getAdminProducts = () => async (dispatch) => {
    try{
       dispatch(adminProductsRequest())
-      const { data } = await axios.get(`/api/v1/admin/products`)
+      const { data } = await axios.get(`${API}/api/v1/admin/products`)
       dispatch(adminProductsSuccess(data))
    }
    catch(error){
@@ -66,7 +67,7 @@ export const getAdminProducts = () => async (dispatch) => {
 export const createNewProducts = (productData) => async (dispatch) => {
    try{
       dispatch(newProductRequest())
-      const { data } = await axios.post(`/api/v1/admin/products/new`, productData)
+      const { data } = await axios.post(`${API}/api/v1/admin/products/new`, productData)
       dispatch(newProductSuccess(data))
    }
    catch(error){
@@ -77,7 +78,7 @@ export const createNewProducts = (productData) => async (dispatch) => {
 export const deleteProducts = (id) => async (dispatch) => {
    try {
       dispatch(deleteProductRequest())
-      const { data } = await axios.delete(`/api/v1/admin/product/${id}`)
+      const { data } = await axios.delete(`${API}/api/v1/admin/product/${id}`)
       dispatch(deleteProductSuccess(data))
    }
    catch(error) {
@@ -90,7 +91,7 @@ export const deleteProducts = (id) => async (dispatch) => {
 export const updateProduct = (id, productData) => async (dispatch) => {
    try{
       dispatch(updateProductRequest())
-      const { data } = await axios.put(`/api/v1/admin/product/${id}`, productData)
+      const { data } = await axios.put(`${API}/api/v1/admin/product/${id}`, productData)
       dispatch(updateProductSuccess(data))
    }
    catch(error){
@@ -105,7 +106,7 @@ export const getReviews = (productId) => async (dispatch) => {
         dispatch(reviewsRequest())
 
         const { data } =
-            await axios.get(`/api/v1/admin/review/${productId}`)
+            await axios.get(`${API}/api/v1/admin/review/${productId}`)
 
         dispatch(reviewsSuccess(data))
 
@@ -126,7 +127,7 @@ export const deleteReview = (productId, reviewId) => async (dispatch) => {
         dispatch(deleteReviewRequest())
 
         await axios.delete(
-            `/api/v1/admin/review/${productId}/${reviewId}`
+            `${API}/api/v1/admin/review/${productId}/${reviewId}`
         )
 
         dispatch(deleteReviewSuccess())
