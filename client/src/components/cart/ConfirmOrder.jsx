@@ -39,7 +39,7 @@ const ConfirmOrder = () => {
                     <div className="col-12 col-lg-8 mt-5 order-confirm">
 
                         <h4 className="mb-3">Shipping Info</h4>
-                        <p><b>Name:</b> {user.name}</p>
+                        <p><b>Name:</b> {user?.name}</p>
                         <p><b>Phone:</b> {shippingInfo.phoneNo}</p>
                         <p className="mb-4"><b>Address:</b> {shippingInfo.address}, {shippingInfo.city} - {shippingInfo.postalCode}, {shippingInfo.state}, {shippingInfo.country} </p>
 

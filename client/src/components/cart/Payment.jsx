@@ -76,7 +76,7 @@ async function submitHandler(e) {
             payment_method: {
                 card: elements.getElement(CardNumberElement),
                 billing_details: {
-                    name: user.name,
+                    name: user?.name,
                     email: user.email
                 }
             }

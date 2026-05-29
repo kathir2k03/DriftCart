@@ -32,9 +32,9 @@ function Header() {
               </figure>
               <span className="d-inline-block text-truncate align-middle"
                 style={{ maxWidth: '100px' }}
-                title={user.name}
+                title={user?.name}
               >
-                {user.name}
+                {user?.name}
               </span>
             </Dropdown.Toggle>
             <Dropdown.Menu>

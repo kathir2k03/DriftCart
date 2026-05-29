@@ -207,12 +207,12 @@ images.push({ image: url });
 req.body.images = images
 
     const { productId, rating, comment } = req.body
-    console.log(req.user.name)
+    console.log(req.user?.name)
     const review = {  // these are all we get from authenticated user function itself
         user: req.user.id,
         rating: rating,
         comment: comment,
-        name: req.user.name
+        name: req.user?.name
     }
 
     const product = await Product.findById(productId)
@@ -235,7 +235,7 @@ req.body.images = images
             if (item.user && item.user.toString() === req.user.id.toString()) {
                 item.comment = comment;
                 item.rating = rating;
-                item.name = req.user.name
+                item.name = req.user?.name
             }
         });
     } else {

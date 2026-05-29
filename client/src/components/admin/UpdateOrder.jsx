@@ -103,7 +103,7 @@ const {
                 <h3 className="mb-4">Shipping Info</h3>
 
                 <p>
-                    <b>Name:</b> {user.name}
+                    <b>Name:</b> {user?.name}
                 </p>
 
                 <p>
