@@ -20,15 +20,15 @@ function Login() {
         dispatch(login(email, password))
     }
 
-    useEffect(() => {
-        if(isAuthenticated){
-            navigate(redirect)
-        }
+useEffect(() => {
+    if (error) {
+        toast.error(error);
+    }
 
-        if (error) {
-            toast.error(error);
-        }
-    }, [error, isAuthenticated, navigate]);
+    if (isAuthenticated) {
+        navigate(redirect);
+    }
+}, [error, isAuthenticated, navigate, redirect]);
 
     return (
         <Fragment>
