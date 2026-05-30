@@ -13,7 +13,7 @@ function Home() {
     (state) => state.productsState,
   );
   const [currentPage, setCurrentPage] = useState(1);
-
+const isMobile = window.innerWidth < 768;
   const setCurrentPageNo = (pageNo) => {
     setCurrentPage(pageNo);
   };
@@ -50,9 +50,10 @@ function Home() {
               <Pagination
                 current={currentPage}
                 total={productsCount}
-                pageSize={2}
+                pageSize={8}
                 onChange={setCurrentPageNo}
                 className="pagination"
+                showLessItems={isMobile}
                 prevIcon={<span>Previous</span>}
                 nextIcon={<span>Next</span>}
               />

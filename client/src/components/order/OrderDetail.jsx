@@ -25,7 +25,9 @@ const OrderDetail = () => {
                 <div className="row d-flex justify-content-between">
                     <div className="col-12 col-lg-8 mt-5 order-details">
 
-                        <h1 className="my-5">Order # {orderDetail?._id}</h1>
+                        <h1 className="order-heading my-3 my-md-5">
+  Order # {orderDetail?._id}
+</h1>
 
                         <h4 className="mb-4">Shipping Info</h4>
                         <p><b>Name:</b> {user?.name}</p>

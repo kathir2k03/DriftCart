@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { updateProfile } from "../../actions/userActions"
 import { toast } from "react-toastify"
 import { clearAuthError, clearUpdateProfile } from "../../slices/authSlice"
+import defaultAvatar from "../../assets/images/default_avatar.webp";
 
 
 const UpdateProfile = () => {
@@ -12,7 +13,7 @@ const UpdateProfile = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [avatar, setAvatar] = useState("")
-    const [avatarPreview, setAvatarPreview] = useState("./images/default_avatar.webp")
+    const [avatarPreview, setAvatarPreview] = useState(defaultAvatar)
     const dispatch = useDispatch()
 
     function onchangeAvatar(e) {
@@ -47,9 +48,9 @@ const UpdateProfile = () => {
         if(user) {
             setName(user?.name)
             setEmail(user?.email)
-            if(user?.avatar){
-                setAvatarPreview(user?.avatar)
-            }  
+        setAvatarPreview(
+            user.avatar || defaultAvatar
+        );
         }
         if(isUpdated){
             toast.success('Profile Updated Successfully',{
@@ -95,7 +96,7 @@ const UpdateProfile = () => {
 
                         <div className='form-group'>
                             <label htmlFor='avatar_upload'>Avatar</label>
-                            <div className='d-flex align-items-center'>
+                            <div className='d-flex flex-column flex-md-row align-items-md-center'>
                                 <div>
                                     <figure className='avatar mr-3 item-rtl'>
                                         <img
