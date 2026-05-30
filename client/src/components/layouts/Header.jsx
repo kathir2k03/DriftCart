@@ -1,8 +1,8 @@
-import React, { useEffect } from "react"
+import React from "react"
 import Search from "./Search"
 import { Link, useNavigate, useLocation } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
-import { DropdownButton, Dropdown, Image } from 'react-bootstrap'
+import { Dropdown, Image } from 'react-bootstrap'
 import { logout } from "../../actions/userActions"
 
 function Header() {
@@ -12,55 +12,133 @@ function Header() {
   const { items: cartItems } = useSelector(state => state.cartState)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
   function logoutHandler() {
     dispatch(logout())
   }
 
   return (
-    <nav className="navbar row align-items-center justify-content-between sticky-top header-navbar">
-      <div className="col-2 md:col-3">
-        <div className="navbar-brand">
-          <Link to={'/'}><img className="cursor-pointer logo-img" src="/images/logo.jpeg" /></Link>
-        </div>
+    <nav
+      className="header-navbar sticky-top"
+      style={{
+        backgroundColor: '#030303',
+        padding: '0.6rem 1rem',
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'wrap',       
+        gap: '8px',
+      }}
+    >
+
+      {/* LOGO — order 1 */}
+      <div style={{ flexShrink: 0, order: 1 }}>
+        <Link to={'/'}>
+          <img className="logo-img" src="/images/logo.jpeg" alt="logo" />
+        </Link>
       </div>
-      <div className="col-8 col-md-4 col-lg-3 mt-2 mt-md-0 text-end order-2 order-md-3">
-        {isAuthenticated ?
-          <Dropdown className="d-inline">
-            <Dropdown.Toggle variant="default text-white pr-5" id='dropdown-basic'>
-              <figure className="avatar avatar-nav">
-                <Image width="50px" src={user?.avatar ?? './images/default_avatar.webp'}></Image>
+
+      {/* SEARCH — desktop middle, order 2 on desktop */}
+      {!isAdminRoute && (
+        <div
+          className="d-none d-md-flex"
+          style={{
+            flex: 1,
+            minWidth: 0,
+            justifyContent: 'center',
+            padding: '0 10px',
+            order: 2
+          }}
+        >
+          <div style={{ width: '100%', maxWidth: '500px' }}>
+            <Search />
+          </div>
+        </div>
+      )}
+
+      {/* RIGHT SIDE — order 2 on mobile (sits next to logo), order 3 on desktop */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px',
+          flexShrink: 0,
+          marginLeft: 'auto',
+          order: 2        
+        }}
+      >
+        {isAuthenticated ? (
+          <Dropdown align="end">
+            <Dropdown.Toggle
+              variant="default"
+              id="dropdown-basic"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                color: '#fff',
+                background: 'none',
+                border: 'none',
+                padding: '0',
+                maxWidth: '160px'
+              }}
+            >
+              <figure className="avatar avatar-nav" style={{ margin: 0, flexShrink: 0 }}>
+                <Image
+                  src={user?.avatar ?? '/images/default_avatar.webp'}
+                  style={{ width: '34px', height: '34px', borderRadius: '50%', objectFit: 'cover' }}
+                />
               </figure>
-              <span className="d-inline-block text-truncate align-middle"
-                style={{ maxWidth: '100px' }}
+              <span
+                style={{
+                  color: '#fff',
+                  maxWidth: '90px',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  display: 'inline-block',
+                  fontSize: '14px',
+                  verticalAlign: 'middle'
+                }}
                 title={user?.name}
               >
                 {user?.name}
               </span>
             </Dropdown.Toggle>
+
             <Dropdown.Menu>
-              {user?.role == "admin" && <Dropdown.Item onClick={() => { navigate('admin/dashboard') }} className="text-dark">Dashboard</Dropdown.Item>}
-              <Dropdown.Item onClick={() => { navigate('/myprofile') }} className="text-dark">Profile</Dropdown.Item>
-              <Dropdown.Item onClick={() => { navigate('/orders') }} className="text-dark">Orders</Dropdown.Item>
+              {user?.role === 'admin' && (
+                <Dropdown.Item onClick={() => navigate('admin/dashboard')} className="text-dark">
+                  Dashboard
+                </Dropdown.Item>
+              )}
+              <Dropdown.Item onClick={() => navigate('/myprofile')} className="text-dark">Profile</Dropdown.Item>
+              <Dropdown.Item onClick={() => navigate('/orders')} className="text-dark">Orders</Dropdown.Item>
               <Dropdown.Item onClick={logoutHandler} className="text-danger">Logout</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          :
+        ) : (
           <Link to={'/login'} className="btn login-btn" id="login_btn">Login</Link>
-        }
+        )}
 
-        <Link to={'/cart'}><span id="cart" className="ml-1 md:ml-3">Cart</span></Link>
-        <span className="ml-1" id="cart_count">{cartItems?.length}</span>
+        <Link to={'/cart'} style={{ display: 'flex', alignItems: 'center', gap: '4px', textDecoration: 'none' }}>
+          <span id="cart" style={{ color: '#fff', fontSize: '1rem' }}>Cart</span>
+          <span id="cart_count">{cartItems?.length}</span>
+        </Link>
       </div>
-      {
-        !isAdminRoute && (
-          <div className="col-12 col-md-5 col-lg-6 mt-2 mt-md-0 d-flex justify-content-center order-3 order-md-2">
-            <div className="w-100 px-2 px-md-0">
-              <Search />
-            </div>
-          </div>
-        )
-      }
 
+      {/* SEARCH — mobile only, full width row below logo+name — order 3 */}
+      {!isAdminRoute && (
+        <div
+          className="d-flex d-md-none"
+          style={{
+            order: 3,         
+            width: '100%',    
+            paddingTop: '4px'
+          }}
+        >
+          <Search />
+        </div>
+      )}
 
     </nav>
   )

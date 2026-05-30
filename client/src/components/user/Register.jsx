@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { register } from "../../actions/userActions"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
-
+import defaultAvatar from "../../assets/images/default_avatar.webp";
 function Register(){
 
     const navigate = useNavigate()
@@ -15,7 +15,7 @@ function Register(){
     })
 
     const [avatar, setAvatar] = useState("")
-    const [avatarPreview, setAvatarPreview] = useState("/images/default_avatar.webp")
+    const [avatarPreview, setAvatarPreview] = useState(defaultAvatar)
 
     const dispatch = useDispatch()
     const {loading, error, isAuthenticated} = useSelector(state => state.authState)
@@ -102,7 +102,7 @@ function Register(){
 
             <div className='form-group'>
               <label htmlFor='avatar_upload'>Avatar</label>
-              <div className='d-flex align-items-center'>
+              <div className='d-flex flex-column flex-md-row align-items-md-center'>
                   <div>
                       <figure className='avatar mr-3 item-rtl'>
                           <img

@@ -211,7 +211,7 @@ const ProductDetail = () => {
               : <div className="alert alert-danger mt-5">Login to Post Review</div> }
 
 
-              <div className="row mt-2 mb-5">
+              <div className="row mt-0 mt-md-2 mb-0 mb-md-5">
                 <div className="rating w-50">
                   <Modal show={show} onHide={handleClose}>
                     <Modal.Header>

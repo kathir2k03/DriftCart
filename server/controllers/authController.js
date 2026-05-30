@@ -10,8 +10,8 @@ exports.registerUser = async (req, res, next) => {
         const { name, email, password } = req.body;
 const avatar = req.file
     ? req.file.path
-    : "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1/default_avatar.webp"
-
+    : ""
+console.log(console.log("Avatar value:", avatar))
         const user = await User.create({
             name,
             email,

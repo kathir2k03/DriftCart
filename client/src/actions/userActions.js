@@ -6,7 +6,7 @@ import API from "../config/api"
 export const login = (email, password) => async(dispatch) => {
     try {
         dispatch(loginRequest())
-        const { data } = await axios.post(`${API}/api/v1/login`,{email, password})
+        const { data } = await axios.post(`${API}/api/v1/login`,{email, password}, { withCredentials: true })
         dispatch(loginSuccess(data))
     } catch (error) {
         dispatch(loginFail(error?.response?.data?.message || error.message))
@@ -16,11 +16,12 @@ export const login = (email, password) => async(dispatch) => {
 export const register = (userData) => async(dispatch) => {
     try {
         dispatch(registerRequest())
-        const config = {
-            headers : {
-                'Content-Type' : 'multipart/form-data'
-            }
-        }
+const config = {
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    },
+    withCredentials: true
+}
         const { data } = await axios.post(`${API}/api/v1/register`,userData, config)
         dispatch(registerSuccess(data))
     } catch (error) {
@@ -32,7 +33,7 @@ export const loadUser = () => async(dispatch) => {
     try {
         dispatch(loadUserRequest())
 
-        const { data } = await axios.get(`${API}/api/v1/myprofile`)
+        const { data } = await axios.get(`${API}/api/v1/myprofile`, { withCredentials: true })
         dispatch(loadUserSuccess(data))
     } catch (error) {
         dispatch(loadUserFail(error?.response?.data?.message || error.message))
@@ -41,7 +42,7 @@ export const loadUser = () => async(dispatch) => {
 
 export const logout = () => async(dispatch) => {
     try {
-        await axios.get(`${API}/api/v1/logout`)
+        await axios.get(`${API}/api/v1/logout`, { withCredentials: true })
         dispatch(logoutSuccess())
     } catch (error) {
         dispatch(logoutFail(error?.response?.data?.message || error.message))
@@ -54,7 +55,8 @@ export const updateProfile = (userData) => async(dispatch) => {
         const config = {
             headers : {
                 'Content-Type' : 'multipart/form-data'
-            }
+            },
+              withCredentials: true
         }
         const { data } = await axios.put(`${API}/api/v1/myprofile/update`, userData, config)
         dispatch(updateProfileSuccess(data))
@@ -66,12 +68,13 @@ export const updateProfile = (userData) => async(dispatch) => {
 export const updatePassword = (formData) => async(dispatch) => {
     try {
         dispatch(updatePasswordRequest())
-        const config = {
-            headers : {
-                'Content-Type' : 'application/json'
-            }
-        }
-        const { data } = await axios.put(`${API}/api/v1/password/change`,formData,config)
+const config = {
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    withCredentials: true
+}
+        const { data } = await axios.put(`${API}/api/v1/password/change`,formData,config,)
         dispatch(updatePasswordSuccess(data))
     } catch (error) {
         dispatch(updatePasswordFail(error?.response?.data?.message || error.message))
@@ -81,11 +84,12 @@ export const updatePassword = (formData) => async(dispatch) => {
 export const forgotPassword = (formData) => async(dispatch) => {
     try {
         dispatch(forgotPasswordRequest())
-        const config = {
-            headers : {
-                'Content-Type' : 'application/json'
-            }
-        }
+const config = {
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    withCredentials: true
+}
         const { data } = await axios.post(`${API}/api/v1/password/forgot`,formData,config)
         dispatch(forgotPasswordSuccess(data))
     } catch (error) {
@@ -96,11 +100,12 @@ export const forgotPassword = (formData) => async(dispatch) => {
 export const resetPassword = (formData, token) => async(dispatch) => {
     try {
         dispatch(resetPasswordRequest())
-        const config = {
-            headers : {
-                'Content-Type' : 'application/json'
-            }
-        }
+const config = {
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    withCredentials: true
+}
         const { data } = await axios.post(`${API}/api/v1/password/reset/${token}`,formData,config)
         dispatch(resetPasswordSuccess(data))
     } catch (error) {
@@ -111,7 +116,7 @@ export const resetPassword = (formData, token) => async(dispatch) => {
 export const getUsers = () => async (dispatch) => {
     try {
         dispatch(usersRequest())
-        const { data } = await axios.get(`${API}/api/v1/admin/users`)
+        const { data } = await axios.get(`${API}/api/v1/admin/users`, { withCredentials: true })
         dispatch(usersSuccess(data))
     }
     catch ( error ){
@@ -122,7 +127,7 @@ export const getUsers = () => async (dispatch) => {
 export const getUser = (id) => async (dispatch) => {
     try {
         dispatch(userRequest())
-        const { data } = await axios.get(`${API}/api/v1/admin/user/${id}`)
+        const { data } = await axios.get(`${API}/api/v1/admin/user/${id}`, { withCredentials: true })
         dispatch(userSuccess(data))
     }
     catch ( error ){
@@ -133,7 +138,7 @@ export const getUser = (id) => async (dispatch) => {
 export const deleteUser = (id) => async (dispatch) => {
     try {
         dispatch(deleteUserRequest())
-        await axios.delete(`${API}/api/v1/admin/user/${id}`)
+        await axios.delete(`${API}/api/v1/admin/user/${id}`, { withCredentials: true })
         dispatch(deleteUserSuccess())
     }
     catch ( error ){
@@ -144,11 +149,12 @@ export const deleteUser = (id) => async (dispatch) => {
 export const updateUser = (id, formData) => async(dispatch) => {
     try {
         dispatch(updateUserRequest())
-        const config = {
-            headers : {
-                'Content-Type' : 'application/json'
-            }
-        }
+const config = {
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    withCredentials: true
+}
         await axios.put(`${API}/api/v1/admin/user/${id}`,formData,config)
         dispatch(updateUserSuccess())
     } catch (error) {

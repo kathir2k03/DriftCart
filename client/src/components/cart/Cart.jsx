@@ -42,7 +42,7 @@ const Cart = () => {
                                                 <img src={data.image} alt={data.name} height="90" width="115" />
                                             </div>
 
-                                            <div className="col-5 col-lg-3">
+                                            <div className="pl-4 col-5 col-lg-3">
                                                 <Link to={`/product-detail/${data.product}`}>{data.name}</Link>
                                             </div>
 

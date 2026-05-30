@@ -42,36 +42,23 @@ const ProductList = () => {
         dispatch(deleteProducts(id))
     }
 
-useEffect(() => {
-
-    if (isProductDeleted) {
-
-        toast.success("Product Deleted Successfully")
-
-        dispatch(clearProductDeleted())
-
+    useEffect(() => {
+        if (isProductDeleted) {
+            toast.success("Product Deleted Successfully")
+            dispatch(clearProductDeleted())
+            dispatch(getAdminProducts())
+        }
+        if (error) {
+            toast.error(error)
+            dispatch(clearError())
+        }
+        if (productError) {
+            toast.error(productError)
+            dispatch(clearError())
+        }
         dispatch(getAdminProducts())
-    }
+    }, [dispatch, error, productError, isProductDeleted])
 
-    if (error) {
-
-        toast.error(error)
-
-        dispatch(clearError())
-    }
-
-    if (productError) {
-
-        toast.error(productError)
-
-        dispatch(clearError())
-    }
-
-    dispatch(getAdminProducts())
-
-}, [dispatch, error, productError, isProductDeleted])
-
-    // TABLE DATA
     const data = useMemo(() =>
         products?.map(product => ({
             id: product._id,
@@ -82,13 +69,12 @@ useEffect(() => {
         [products]
     )
 
-    // TABLE COLUMNS
     const columns = useMemo(() => [
         {
             header: 'ID',
             accessorKey: 'id',
             cell: info => (
-                <span style={{ fontSize: '12px' }}>
+                <span style={{ fontSize: '12px', wordBreak: 'break-all' }}>
                     {info.getValue()}
                 </span>
             )
@@ -109,62 +95,33 @@ useEffect(() => {
             header: 'Actions',
             accessorKey: 'actions',
             enableGlobalFilter: false,
-
             cell: ({ row }) => (
                 <div style={{ display: 'flex', gap: '10px' }}>
-
                     <Link to={`/admin/product/${row.original.id}`}>
-                        <FaEdit
-                            style={{
-                                color: '#0d6efd',
-                                cursor: 'pointer',
-                                fontSize: '18px'
-                            }}
-                        />
+                        <FaEdit style={{ color: '#0d6efd', cursor: 'pointer', fontSize: '18px' }} />
                     </Link>
-
                     <div onClick={() => deleteNewProducts(row.original.id)}>
-                        <FaTrash
-                            style={{
-                                color: 'red',
-                                cursor: 'pointer',
-                                fontSize: '18px'
-                            }}
-                        />
+                        <FaTrash style={{ color: 'red', cursor: 'pointer', fontSize: '18px' }} />
                     </div>
-
                 </div>
             )
         }
-
     ], [])
 
     const table = useReactTable({
         data,
         columns,
-
-        state: {
-            globalFilter,
-            pagination,
-        },
-
+        state: { globalFilter, pagination },
         onPaginationChange: setPagination,
         onGlobalFilterChange: setGlobalFilter,
-
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
     })
 
     const { pageIndex, pageSize } = table.getState().pagination
-
     const totalRows = table.getFilteredRowModel().rows.length
-
-    const from =
-        totalRows === 0
-            ? 0
-            : pageIndex * pageSize + 1
-
+    const from = totalRows === 0 ? 0 : pageIndex * pageSize + 1
     const to = Math.min((pageIndex + 1) * pageSize, totalRows)
 
     return (
@@ -172,40 +129,36 @@ useEffect(() => {
 
             <MetaData title={'Products List'} />
 
-            <div className="row">
+            <div className="admin-layout">
 
-                <div className="col-12 col-md-2">
-                    <Sidebar />
-                </div>
+                <Sidebar />
 
-                <div className="col-12 col-md-10">
+                <div className="admin-content">
 
                     <h1 className="my-4">Products List</h1>
 
-                    {loading ? <Loader /> :
+                    {loading ? <Loader /> : (
 
-                        <div
-                            style={{
-                                backgroundColor: '#fff',
-                                border: '1px solid #ddd',
-                                borderRadius: '10px',
-                                overflow: 'hidden'
-                            }}
-                        >
+                        <div style={{
+                            backgroundColor: '#fff',
+                            border: '1px solid #ddd',
+                            borderRadius: '10px',
+                            overflow: 'hidden'
+                        }}>
 
-                            {/* TOP */}
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    padding: '15px',
-                                    borderBottom: '1px solid #eee'
-                                }}
-                            >
+                            {/* TOP BAR */}
+                            <div style={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                gap: '10px',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                padding: '15px',
+                                borderBottom: '1px solid #eee'
+                            }}>
 
-                                <div>
+                                <div style={{ whiteSpace: 'nowrap' }}>
                                     <span>Show </span>
-
                                     <select
                                         value={pageSize}
                                         onChange={(e) =>
@@ -215,14 +168,12 @@ useEffect(() => {
                                                 pageIndex: 0
                                             }))
                                         }
+                                        style={{ margin: '0 4px' }}
                                     >
                                         {[5, 10, 25, 50].map(size => (
-                                            <option key={size} value={size}>
-                                                {size}
-                                            </option>
+                                            <option key={size} value={size}>{size}</option>
                                         ))}
                                     </select>
-
                                     <span> entries</span>
                                 </div>
 
@@ -237,110 +188,67 @@ useEffect(() => {
                                     style={{
                                         border: '1px solid #ccc',
                                         padding: '5px 10px',
-                                        borderRadius: '5px'
+                                        borderRadius: '5px',
+                                        width: '100%',
+                                        maxWidth: '220px'
                                     }}
                                 />
 
                             </div>
 
                             {/* TABLE */}
-                            <div style={{ overflowX: 'auto' }}>
+                            <div style={{ overflowX: 'auto', width: '100%' }}>
 
-                                <table
-                                    style={{
-                                        width: '100%',
-                                        borderCollapse: 'collapse'
-                                    }}
-                                >
+                                <table style={{
+                                    width: '100%',
+                                    borderCollapse: 'collapse',
+                                    minWidth: '500px'
+                                }}>
 
                                     <thead>
-
                                         {table.getHeaderGroups().map(headerGroup => (
-
-                                            <tr
-                                                key={headerGroup.id}
-                                                style={{
-                                                    backgroundColor: '#030303',
-                                                    color: '#fff'
-                                                }}
-                                            >
-
+                                            <tr key={headerGroup.id}
+                                                style={{ backgroundColor: '#030303', color: '#fff' }}>
                                                 {headerGroup.headers.map(header => (
-
-                                                    <th
-                                                        key={header.id}
-                                                        style={{
-                                                            padding: '12px',
-                                                            textAlign: 'left'
-                                                        }}
-                                                    >
+                                                    <th key={header.id}
+                                                        style={{ padding: '12px', textAlign: 'left', whiteSpace: 'nowrap' }}>
                                                         {flexRender(
                                                             header.column.columnDef.header,
                                                             header.getContext()
                                                         )}
                                                     </th>
-
                                                 ))}
-
                                             </tr>
-
                                         ))}
-
                                     </thead>
 
                                     <tbody>
-
                                         {table.getRowModel().rows.length === 0 ? (
-
                                             <tr>
-                                                <td
-                                                    colSpan={5}
-                                                    style={{
-                                                        textAlign: 'center',
-                                                        padding: '20px'
-                                                    }}
-                                                >
+                                                <td colSpan={5}
+                                                    style={{ textAlign: 'center', padding: '20px' }}>
                                                     No Products Found
                                                 </td>
                                             </tr>
-
                                         ) : (
-
                                             table.getRowModel().rows.map((row, index) => (
-
-                                                <tr
-                                                    key={row.id}
+                                                <tr key={row.id}
                                                     style={{
-                                                        backgroundColor:
-                                                            index % 2 === 0
-                                                                ? '#fff'
-                                                                : '#f9fafb',
+                                                        backgroundColor: index % 2 === 0 ? '#fff' : '#f9fafb',
                                                         borderBottom: '1px solid #eee'
-                                                    }}
-                                                >
-
+                                                    }}>
                                                     {row.getVisibleCells().map(cell => (
-
-                                                        <td
-                                                            key={cell.id}
-                                                            style={{
-                                                                padding: '12px'
-                                                            }}
-                                                        >
+                                                        <td key={cell.id}
+                                                            style={{ padding: '12px' }}>
                                                             {flexRender(
                                                                 cell.column.columnDef.cell,
                                                                 cell.getContext()
                                                             )}
                                                         </td>
-
                                                     ))}
-
                                                 </tr>
-
                                             ))
-
                                         )}
-
                                     </tbody>
 
                                 </table>
@@ -348,42 +256,53 @@ useEffect(() => {
                             </div>
 
                             {/* PAGINATION */}
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    padding: '15px'
-                                }}
-                            >
+                            <div style={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                gap: '10px',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                padding: '15px'
+                            }}>
 
-                                <p>
+                                <p style={{ margin: 0, fontSize: '14px' }}>
                                     Showing <b>{from}</b> to <b>{to}</b> of{' '}
                                     <b>{totalRows}</b> entries
                                 </p>
 
                                 <div style={{ display: 'flex', gap: '5px' }}>
-
                                     <button
                                         onClick={() => table.previousPage()}
                                         disabled={!table.getCanPreviousPage()}
+                                        style={{
+                                            padding: '5px 14px',
+                                            borderRadius: '5px',
+                                            border: '1px solid #ccc',
+                                            cursor: table.getCanPreviousPage() ? 'pointer' : 'not-allowed',
+                                            background: table.getCanPreviousPage() ? '#fff' : '#f3f3f3'
+                                        }}
                                     >
                                         Previous
                                     </button>
-
                                     <button
                                         onClick={() => table.nextPage()}
                                         disabled={!table.getCanNextPage()}
+                                        style={{
+                                            padding: '5px 14px',
+                                            borderRadius: '5px',
+                                            border: '1px solid #ccc',
+                                            cursor: table.getCanNextPage() ? 'pointer' : 'not-allowed',
+                                            background: table.getCanNextPage() ? '#fff' : '#f3f3f3'
+                                        }}
                                     >
                                         Next
                                     </button>
-
                                 </div>
 
                             </div>
 
                         </div>
-
-                    }
+                    )}
 
                 </div>
 

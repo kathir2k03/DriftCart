@@ -122,8 +122,18 @@ function UserOrders() {
                     {/* ── Top Controls ── */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderBottom: '1px solid #e5e7eb', backgroundColor: '#f9fafb' }}>
 
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#4b5563' }}>
+                        <div
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                flexWrap: 'wrap',
+                                fontSize: '14px',
+                                color: '#4b5563'
+                            }}
+                        >
                             <span>Show</span>
+
                             <select
                                 value={pageSize}
                                 onChange={e =>
@@ -133,12 +143,21 @@ function UserOrders() {
                                         pageIndex: 0,
                                     }))
                                 }
-                                style={{ border: '1px solid #d1d5db', borderRadius: '4px', padding: '4px 8px', fontSize: '14px', color: '#374151', backgroundColor: '#fff' }}
+                                style={{
+                                    border: '1px solid #d1d5db',
+                                    borderRadius: '4px',
+                                    padding: '4px 8px',
+                                    fontSize: '14px',
+                                    color: '#374151',
+                                    backgroundColor: '#fff',
+                                    minWidth: '70px'
+                                }}
                             >
                                 {[5, 10, 25, 50].map(n => (
                                     <option key={n} value={n}>{n}</option>
                                 ))}
                             </select>
+
                             <span>entries</span>
                         </div>
 

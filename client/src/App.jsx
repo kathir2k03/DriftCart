@@ -88,7 +88,7 @@ function App() {
     async function getStripeKey() {
       try {
         const { data } = await axios.get(`${API}/api/v1/stripeapi`);
-
+ console.log("Stripe Response:", data);
         setStripeApiKey(data.stripeApiKey);
         setStripePromise(loadStripe(data.stripeApiKey));
       } catch (err) {
