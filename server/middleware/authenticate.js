@@ -3,7 +3,7 @@ const User = require('../models/userModel')
 
 // in cookie we stored so the token is valid or not for that we using this function
 exports.isAuthenticatedUser = async (req, res, next) => {
-
+console.log("Cookies:", req.cookies);
     // request storing toekn using destructuring method for that must run cookie parsher
     const {token} = req.cookies
     // console.log("token", token) // to checking the token is there
